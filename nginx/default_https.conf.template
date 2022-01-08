@@ -2,6 +2,7 @@ server {
     listen      80;
     listen [::]:80;
     server_name FQDN_OR_IP;
+    client_max_body_size 100M;
 
     location / {
         rewrite ^ https://$host$request_uri? permanent;

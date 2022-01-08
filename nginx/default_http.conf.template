@@ -1,6 +1,7 @@
 server {
     listen 80;
     server_name FQDN_OR_IP;
+    client_max_body_size 100M;
 
     root /var/www/html;
     index index.php;
