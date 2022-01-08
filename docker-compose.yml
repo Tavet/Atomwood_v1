@@ -4,8 +4,6 @@ services:
   wordpress:
     build:
       context: ./config/php
-      args:
-        - image=wordpress:${WORDPRESS_VERSION:-php7.3-fpm}
     container_name: wordpress
     volumes:
       - ./config/php/conf.ini:/usr/local/etc/php/conf.d/conf.ini
