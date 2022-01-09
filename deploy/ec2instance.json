@@ -1,0 +1,38 @@
+{
+    "variables": {
+        "aws_access_key": "${aws_access_key}",
+        "aws_secret_key": "${aws_secret_key}",
+        "aws_region": "${aws_region}",
+        "ssh_username": "${ssh_username}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `aws_region`}}",
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",
+                    "name": "amzn2-ami-hvm-2*-x86_64-gp2",
+                    "root-device-type": "ebs"
+                },
+                "owners": [
+                    "amazon"
+                ],
+                "most_recent": true
+            },
+            "instance_type": "t3.medium",
+            "ssh_username": "{{user `ssh_username`}}",
+            "ami_name": "Atomwood web {{timestamp}}",
+            "ami_description": "Atomwood Wordpress Deployment AMI v1.0.0 - No scaling"
+        }
+    ],
+    "provisioners": [
+        {
+            "execute_command": "echo 'packer' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+            "script": "./scripts/ec2instance.sh",
+            "type": "shell"
+        }
+    ]
+}
