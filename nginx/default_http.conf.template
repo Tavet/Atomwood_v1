@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name FQDN_OR_IP;
+    server_name atomwood.com.co;
     client_max_body_size 100M;
 
     root /var/www/html;
