@@ -31,7 +31,7 @@
     "provisioners": [
         {
             "execute_command": "echo 'packer' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-            "script": "./scripts/ec2instance.sh",
+            "script": "scripts/ec2instance.sh",
             "type": "shell"
         }
     ]
