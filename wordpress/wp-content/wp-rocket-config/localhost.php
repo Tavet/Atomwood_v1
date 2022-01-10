@@ -12,7 +12,7 @@ $rocket_cache_query_strings = array(
   0 => 'q',
 );
 $rocket_secret_cache_key = '';
-$rocket_cache_ssl = 0;
+$rocket_cache_ssl = 1;
 $rocket_do_caching_mobile_files = 0;
 $rocket_cache_ignored_parameters = array(
   'utm_source' => 1,
