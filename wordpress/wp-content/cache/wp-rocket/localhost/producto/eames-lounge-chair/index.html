@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+	
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://localhost/xmlrpc.php">
+
+			<script>window.MSInputMethodContext && document.documentMode && document.write('<script src="http://localhost/wp-content/themes/atomwood/js/libs/ie11CustomProperties.min.js" defer><\/script>');</script>
+		<link media="all" href="http://localhost/wp-content/cache/autoptimize/css/autoptimize_e8654835e13bb363f9a54899e41f681f.css" rel="stylesheet" /><title>Eames lounge chair &#8211; Atomwood</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//localhost' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Atomwood &raquo; Feed" href="http://localhost/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Atomwood &raquo; RSS de los comentarios" href="http://localhost/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Atomwood &raquo; Eames lounge chair RSS de los comentarios" href="http://localhost/producto/eames-lounge-chair/feed/" />
+
+
+
+
+
+
+
+<link rel='stylesheet' id='elementor-post-18-css'  href='http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_71202db2f2adceabef931c3ea4734d81.css?ver=1641687015' type='text/css' media='all' />
+
+<link rel='stylesheet' id='elementor-post-232-css'  href='http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_2a53664d4d693981d8de9637b71eedb9.css?ver=1641697580' type='text/css' media='all' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel='stylesheet' id='xts-style-header_751286-css'  href='http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_fc914318a4f516d6eae96a08aff64394.css?ver=6.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='xts-style-theme_settings_default-css'  href='http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_a89e394fb8aba2cef310c8c61b70d226.css?ver=6.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='xts-google-fonts-css'  href='https://fonts.googleapis.com/css?family=Jost%3A400%2C600%7CLato%3A400%2C700&#038;ver=6.2.4' type='text/css' media='all' />
+
+<link rel='stylesheet' id='google-fonts-1-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=5.8.3' type='text/css' media='all' />
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+
+
+<script type='text/javascript' id='wc-settings-dep-in-header-js-after'>
+console.warn( "Scripts that have a dependency on [wc-settings, wc-blocks-checkout] must be loaded in the footer, mailpoet-marketing-optin-block-editor-script was registered to load in the header, but has been switched to load in the footer instead. See https://github.com/woocommerce/woocommerce-gutenberg-products-block/pull/5059" );
+</script>
+<link rel="https://api.w.org/" href="http://localhost/wp-json/" /><link rel="alternate" type="application/json" href="http://localhost/wp-json/wp/v2/product/232" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.3" />
+<meta name="generator" content="WooCommerce 6.0.0" />
+<link rel="canonical" href="http://localhost/producto/eames-lounge-chair/" />
+<link rel='shortlink' href='http://localhost/?p=232' />
+<link rel="alternate" type="application/json+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fproducto%2Feames-lounge-chair%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fproducto%2Feames-lounge-chair%2F&#038;format=xml" />
+					<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+										<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<meta name="generator" content="Powered by Slider Revolution 6.5.14 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+<script type="rocketlazyloadscript">function setREVStartSize(e){
+			//window.requestAnimationFrame(function() {
+				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;
+				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;
+				try {
+					var pw = document.getElementById(e.c).parentNode.offsetWidth,
+						newh;
+					pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
+					e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
+					e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
+					e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
+					e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
+					e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
+					e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
+					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);
+					if(e.layout==="fullscreen" || e.l==="fullscreen")
+						newh = Math.max(e.mh,window.RSIH);
+					else{
+						e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];
+						e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
+						e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+						for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1];
+											
+						var nl = new Array(e.rl.length),
+							ix = 0,
+							sl;
+						e.tabw = e.tabhide>=pw ? 0 : e.tabw;
+						e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
+						e.tabh = e.tabhide>=pw ? 0 : e.tabh;
+						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;
+						for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
+						sl = nl[0];
+						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}
+						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);
+						newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
+					}
+					var el = document.getElementById(e.c);
+					if (el!==null && el) el.style.height = newh+"px";
+					el = document.getElementById(e.c+"_wrapper");
+					if (el!==null && el) {
+						el.style.height = newh+"px";
+						el.style.display = "block";
+					}
+				} catch(e){
+					console.log("Failure at Presize of Slider:" + e)
+				}
+			//});
+		  };</script>
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+
+<body class="product-template-default single single-product postid-232 theme-atomwood woocommerce woocommerce-page woocommerce-no-js wrapper-full-width  woodmart-product-design-default categories-accordion-on woodmart-archive-shop woodmart-ajax-shop-on offcanvas-sidebar-mobile offcanvas-sidebar-tablet elementor-default elementor-kit-18 elementor-page elementor-page-232">
+			<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="wd-flicker-fix">// Flicker fix.</script>	
+	
+	<div class="website-wrapper">
+									<header class="whb-header whb-sticky-shadow whb-scroll-slide whb-sticky-real whb-custom-header">
+								 						 			<div class="whb-main-header">
+	
+<div class="whb-row whb-general-header whb-sticky-row whb-without-bg whb-without-border whb-color-light whb-flex-flex-middle">
+	<div class="container">
+		<div class="whb-flex-row whb-general-header-inner">
+			<div class="whb-column whb-col-left whb-visible-lg">
+	<div class="site-logo">
+	<a href="http://localhost/" class="wd-logo wd-main-logo" rel="home">
+		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20369%2053'%3E%3C/svg%3E" class="attachment-full size-full" alt="" style="max-width:180px;" height="53" width="369" data-lazy-src="http://localhost/wp-content/uploads/2021/08/wood-logo-white-reserve.svg" /><noscript><img src="http://localhost/wp-content/uploads/2021/08/wood-logo-white-reserve.svg" class="attachment-full size-full" alt="" style="max-width:180px;" height="53" width="369" /></noscript>	</a>
+	</div>
+<div class="whb-space-element " style="width:30px;"></div></div>
+<div class="whb-column whb-col-center whb-visible-lg">
+	<div class="wd-header-nav wd-header-main-nav text-left" role="navigation">
+	<ul id="menu-main-navigation" class="menu wd-nav wd-nav-main wd-style-default wd-gap-s"><li id="menu-item-8496" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-8496 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"><a href="http://localhost/" class="woodmart-nav-link"><span class="nav-link-text">Home</span></a>
+<div class="wd-dropdown-menu wd-dropdown wd-design-full-width color-scheme-dark">
+
+<div class="container">
+			<link rel="stylesheet" id="elementor-post-732-css" href="http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_5ca958d714e09f99b88d68b8e8663bc8.css?ver=1641687016" type="text/css" media="all">
+					<div data-elementor-type="wp-post" data-elementor-id="732" class="elementor elementor-732" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-6337d053 elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="6337d053" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-43aba99b" data-id="43aba99b" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-0ae53d0 elementor-widget__width-auto elementor-widget elementor-widget-wd_image_or_svg" data-id="0ae53d0" data-element_type="widget" data-widget_type="wd_image_or_svg.default">
+				<div class="elementor-widget-container">
+			
+		<div class="wd-image text-left">
+							<a  href="#">
+								<img width="300" height="250" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20250'%3E%3C/svg%3E" class="attachment-full size-full" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/default-1.jpg" /><noscript><img width="300" height="250" src="http://localhost/wp-content/uploads/2021/08/default-1.jpg" class="attachment-full size-full" alt="" /></noscript>							</a>
+					</div>
+
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-f75d0fd elementor-widget elementor-widget-wd_text_block" data-id="f75d0fd" data-element_type="widget" data-widget_type="wd_text_block.default">
+				<div class="elementor-widget-container">
+						 					<div class="wd-text-block reset-last-child text-center">
+			
+			<a href="#">Menu title</a>
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-282d81fc" data-id="282d81fc" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-166b9d2 elementor-widget__width-auto elementor-widget elementor-widget-wd_image_or_svg" data-id="166b9d2" data-element_type="widget" data-widget_type="wd_image_or_svg.default">
+				<div class="elementor-widget-container">
+			
+		<div class="wd-image text-left">
+							<a  href="#">
+								<img width="300" height="250" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20250'%3E%3C/svg%3E" class="attachment-full size-full" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/preview-real-estate-1.jpg" /><noscript><img width="300" height="250" src="http://localhost/wp-content/uploads/2021/08/preview-real-estate-1.jpg" class="attachment-full size-full" alt="" /></noscript>							</a>
+					</div>
+
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-7dd632d elementor-widget elementor-widget-wd_text_block" data-id="7dd632d" data-element_type="widget" data-widget_type="wd_text_block.default">
+				<div class="elementor-widget-container">
+					<div class="wd-text-block reset-last-child text-center">
+			
+			<a href="#">Menu title</a>
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-67928d42" data-id="67928d42" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-32891d1 elementor-widget__width-auto elementor-widget elementor-widget-wd_image_or_svg" data-id="32891d1" data-element_type="widget" data-widget_type="wd_image_or_svg.default">
+				<div class="elementor-widget-container">
+			
+		<div class="wd-image text-left">
+							<a  href="#">
+								<img width="300" height="250" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20250'%3E%3C/svg%3E" class="attachment-full size-full" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/preview-decor-1.jpg" /><noscript><img width="300" height="250" src="http://localhost/wp-content/uploads/2021/08/preview-decor-1.jpg" class="attachment-full size-full" alt="" /></noscript>							</a>
+					</div>
+
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-ebcca7b elementor-widget elementor-widget-wd_text_block" data-id="ebcca7b" data-element_type="widget" data-widget_type="wd_text_block.default">
+				<div class="elementor-widget-container">
+					<div class="wd-text-block reset-last-child text-center">
+			
+			<a href="#">Menu title</a>
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-429c10ca" data-id="429c10ca" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4a6a557 elementor-widget__width-auto elementor-widget elementor-widget-wd_image_or_svg" data-id="4a6a557" data-element_type="widget" data-widget_type="wd_image_or_svg.default">
+				<div class="elementor-widget-container">
+			
+		<div class="wd-image text-left">
+							<a  href="#">
+								<img width="300" height="250" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20250'%3E%3C/svg%3E" class="attachment-full size-full" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/preview-retail-1.jpg" /><noscript><img width="300" height="250" src="http://localhost/wp-content/uploads/2021/08/preview-retail-1.jpg" class="attachment-full size-full" alt="" /></noscript>							</a>
+					</div>
+
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-0fb3f04 elementor-widget elementor-widget-wd_text_block" data-id="0fb3f04" data-element_type="widget" data-widget_type="wd_text_block.default">
+				<div class="elementor-widget-container">
+					<div class="wd-text-block reset-last-child text-center">
+			
+			<a href="#">Menu title</a>
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+		
+</div>
+
+</div>
+</li>
+<li id="menu-item-8499" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8499 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children"><a href="http://localhost/shop/" class="woodmart-nav-link"><span class="nav-link-text">Shop</span></a>
+<div class="wd-dropdown-menu wd-dropdown wd-design-full-width color-scheme-dark">
+
+<div class="container">
+			<link rel="stylesheet" id="elementor-post-8364-css" href="http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_e5378af9c5ae91a5954c70c4fd49fe62.css?ver=1641687016" type="text/css" media="all">
+					<div data-elementor-type="wp-post" data-elementor-id="8364" class="elementor elementor-8364" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-2975e8a4 elementor-section-content-top elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="2975e8a4" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-1bd3f387" data-id="1bd3f387" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-572c23b8 elementor-widget elementor-widget-wd_extra_menu_list" data-id="572c23b8" data-element_type="widget" data-widget_type="wd_extra_menu_list.default">
+				<div class="elementor-widget-container">
+						<ul class="wd-sub-menu  mega-menu-list">
+				<li class="item-with-label item-label-black">
+											<a  href="http://localhost/shop/">
+																						
+															Shop pages							
+													</a>
+					
+					<ul class="sub-sub-menu">
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=filters_area">
+																												
+																			Filters area									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=hidden_sidebar">
+																												
+																			Hidden sidebar									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=no_page_heading">
+																												
+																			No page heading									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=small_categories">
+																												
+																			Small categories menu									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=bordered_grid">
+																												
+																			Bordered grid									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=list_view">
+																												
+																			Products list view									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=with_background">
+																												
+																			With background									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/product-category/furniture/">
+																												
+																			Category description									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=header_overlap">
+																												
+																			Header overlap									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop">
+																												
+																			Default shop									
+																	</a>
+							</li>
+											</ul>
+				</li>
+			</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-716ad27" data-id="716ad27" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-56990d63 elementor-widget elementor-widget-wd_extra_menu_list" data-id="56990d63" data-element_type="widget" data-widget_type="wd_extra_menu_list.default">
+				<div class="elementor-widget-container">
+						<ul class="wd-sub-menu  mega-menu-list">
+				<li class="item-with-label item-label-orange">
+											<a  href="http://localhost/shop/">
+																						
+															Product hovers							
+															<span class="menu-label menu-label-orange">
+									effects								</span>
+													</a>
+					
+					<ul class="sub-sub-menu">
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop">
+																												
+																			Summary on hover									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=hover_icons">
+																												
+																			Icons on hover									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=hover_icons_cart">
+																												
+																			Icons &amp; Add to cart									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=image_info">
+																												
+																			Full info on image									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=hover_info">
+																												
+																			All info on hover									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=image_button">
+																												
+																			Button on image									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=button_standard">
+																												
+																			Standard button									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=quick_shop">
+																												
+																			Quick shop									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-blue">
+								<a  href="http://localhost/shop/?opts=tiled_hover">
+																												
+																			Tiled hover									
+																	</a>
+							</li>
+											</ul>
+				</li>
+			</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-13c46b47" data-id="13c46b47" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4d66c019 elementor-widget elementor-widget-wd_extra_menu_list" data-id="4d66c019" data-element_type="widget" data-widget_type="wd_extra_menu_list.default">
+				<div class="elementor-widget-container">
+						<ul class="wd-sub-menu  mega-menu-list">
+				<li class="item-with-label item-label-red">
+											<a  href="http://localhost/shop/">
+																						
+															Product pages							
+															<span class="menu-label menu-label-red">
+									Unlimited								</span>
+													</a>
+					
+					<ul class="sub-sub-menu">
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/eames-plastic-side-chair/">
+																												
+																			Default									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/panton-tunior-chair/?opts=product_center">
+																												
+																			Centered									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/smart-watches-wood-edition/?opts=product_sticky">
+																												
+																			Sticky description									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/augue-adipiscing-euismod/?opts=product_shadow">
+																												
+																			With shadow									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/eames-plastic-side-chair/?opts=product_bg">
+																												
+																			With background									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-orange">
+								<a  href="http://localhost/product/decoration-wooden-present/?opts=product_accordion">
+																												
+																			Accordion tabs									
+																			<span class="menu-label menu-label-orange">
+											New										</span>
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/wine-bottle-lantern/?opts=accordion_content">
+																												
+																			Accordion in content									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/wooden-single-drawer/?opts=sticky_add_to_cart">
+																												
+																			Sticky add to cart									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/iphone-dock/?opts=product_sidebar">
+																												
+																			With sidebar									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/eames-lounge-chair/">
+																												
+																			Extra content #1									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/ornare-auctor/">
+																												
+																			Extra content #2									
+																	</a>
+							</li>
+											</ul>
+				</li>
+			</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-7efa6ea" data-id="7efa6ea" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-fa003d3 elementor-widget elementor-widget-wd_extra_menu_list" data-id="fa003d3" data-element_type="widget" data-widget_type="wd_extra_menu_list.default">
+				<div class="elementor-widget-container">
+						<ul class="wd-sub-menu  mega-menu-list">
+				<li class="item-with-label item-label-red">
+											<a  href="http://localhost/shop/">
+																						
+															Product images							
+													</a>
+					
+					<ul class="sub-sub-menu">
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/classic-wooden-chair/">
+																												
+																			Thumbnails left									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/augue-adipiscing-euismod/?opts=images_bottom">
+																												
+																			Thumbnails bottom									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/eames-plastic-side-chair/?opts=images_sticky">
+																												
+																			Sticky images									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/panton-tunior-chair/?opts=images_col1">
+																												
+																			One column									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/wine-bottle-lantern/?opts=images_col2">
+																												
+																			Two columns									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/decoration-wooden-present/?opts=images_combined">
+																												
+																			Combined grid									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/iphone-dock/?opts=product_img_fullwidth">
+																												
+																			Images full-width									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/smart-watches-wood-edition/">
+																												
+																			Zoom image									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/panton-tunior-chair/?opts=images_small">
+																												
+																			Images size - small									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/eames-lounge-chair/?opts=images_large">
+																												
+																			Images size - large									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/ornare-auctor/?opts=without_thumb">
+																												
+																			Without thumbnails									
+																	</a>
+							</li>
+											</ul>
+				</li>
+			</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-902381d" data-id="902381d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-470ce7c8 elementor-widget elementor-widget-wd_extra_menu_list" data-id="470ce7c8" data-element_type="widget" data-widget_type="wd_extra_menu_list.default">
+				<div class="elementor-widget-container">
+						<ul class="wd-sub-menu  mega-menu-list">
+				<li class="item-with-label item-label-red">
+											<a  href="http://localhost/shop/">
+																						
+															WooCommerce							
+													</a>
+					
+					<ul class="sub-sub-menu">
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/augue-adipiscing-euismod/">
+																												
+																			Simple product									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/wooden-single-drawer/">
+																												
+																			Grouped product									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/my-account/">
+																												
+																			My account									
+																	</a>
+							</li>
+											</ul>
+				</li>
+			</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-7f413a95" data-id="7f413a95" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-1f4a78a1 elementor-widget elementor-widget-wd_extra_menu_list" data-id="1f4a78a1" data-element_type="widget" data-widget_type="wd_extra_menu_list.default">
+				<div class="elementor-widget-container">
+						<ul class="wd-sub-menu  mega-menu-list">
+				<li class="item-with-label item-label-red">
+											<a  href="http://localhost/shop/">
+																						
+															Features							
+													</a>
+					
+					<ul class="sub-sub-menu">
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/eames-lounge-chair/">
+																												
+																			360° product viewer									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/panton-tunior-chair/">
+																												
+																			With video									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/henectus-tincidunt/">
+																												
+																			Product presentation									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/product/smart-watches-wood-edition/">
+																												
+																			Variations swatches									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/shop/?opts=infinit_scrolling">
+																												
+																			Infinit scrolling									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/shop/?opts=load_more">
+																												
+																			Load more button									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/shop/?opts=catalog_mode">
+																												
+																			Catalog mode									
+																	</a>
+							</li>
+													
+							<li class="item-with-label item-label-primary">
+								<a  href="http://localhost/shop/?opts=cookies_law">
+																												
+																			Cookies law info									
+																	</a>
+							</li>
+											</ul>
+				</li>
+			</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+		
+</div>
+
+</div>
+</li>
+<li id="menu-item-8451" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8451 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children dropdown-load-ajax dropdown-with-height"><a href="http://localhost/blog/" class="woodmart-nav-link"><span class="nav-link-text">Blog</span></a>
+<div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+
+<div class="container">
+<div class="dropdown-html-placeholder wd-fill" data-id="8371"></div>
+</div>
+
+</div>
+</li>
+<li id="menu-item-8400" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8400 item-level-0 menu-mega-dropdown wd-event-hover menu-item-has-children dropdown-load-ajax dropdown-with-height"><a href="http://localhost/blog/" class="woodmart-nav-link"><span class="nav-link-text">Blog</span></a>
+<div class="wd-dropdown-menu wd-dropdown wd-design-sized color-scheme-dark">
+
+<div class="container">
+<div class="dropdown-html-placeholder wd-fill" data-id="8371"></div>
+</div>
+
+</div>
+</li>
+<li id="menu-item-8449" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8449 item-level-0 menu-simple-dropdown wd-event-hover"><a href="http://localhost/portfolio/" class="woodmart-nav-link"><span class="nav-link-text">Portfolio</span></a></li>
+<li id="menu-item-8399" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8399 item-level-0 menu-simple-dropdown wd-event-hover"><a href="http://localhost/portfolio/" class="woodmart-nav-link"><span class="nav-link-text">Portfolio</span></a></li>
+<li id="menu-item-8467" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8467 item-level-0 menu-simple-dropdown wd-event-hover"><a href="http://localhost/about-us-3/" class="woodmart-nav-link"><span class="nav-link-text">About us</span></a></li>
+<li id="menu-item-8420" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8420 item-level-0 menu-simple-dropdown wd-event-hover"><a href="http://localhost/about-us-3/" class="woodmart-nav-link"><span class="nav-link-text">About us</span></a></li>
+<li id="menu-item-8468" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8468 item-level-0 menu-simple-dropdown wd-event-hover"><a href="http://localhost/contact-us/" class="woodmart-nav-link"><span class="nav-link-text">Contact us</span></a></li>
+<li id="menu-item-8422" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8422 item-level-0 menu-simple-dropdown wd-event-hover"><a href="http://localhost/contact-us/" class="woodmart-nav-link"><span class="nav-link-text">Contact us</span></a></li>
+</ul></div><!--END MAIN-NAV-->
+</div>
+<div class="whb-column whb-col-right whb-visible-lg">
+				 			<div class="wd-header-my-account wd-tools-element wd-event-hover  wd-account-style-text login-side-opener">
+			<a href="http://localhost/my-account/" title="My account">
+			<span class="wd-tools-icon">
+							</span>
+			<span class="wd-tools-text">
+				Login / Register			</span>
+		</a>
+		
+			</div>
+
+<div class="wd-header-compare wd-tools-element wd-style-icon wd-with-count" title="Compare products">
+	<a href="http://localhost/compare/">
+		<span class="wd-tools-icon">
+			
+							<span class="wd-tools-count">0</span>
+					</span>
+		<span class="wd-tools-text">
+			Compare		</span>
+	</a>
+</div>
+			 			
+<div class="wd-header-wishlist wd-tools-element wd-style-icon wd-with-count" title="My Wishlist">
+	<a href="http://localhost/wishlist/">
+		<span class="wd-tools-icon">
+			
+							<span class="wd-tools-count">
+					0				</span>
+					</span>
+		<span class="wd-tools-text">
+			Wishlist		</span>
+	</a>
+</div>
+			 						 						 			
+<div class="wd-header-cart wd-tools-element wd-design-2 cart-widget-opener">
+	<a href="http://localhost/cart/" title="Shopping cart">
+		<span class="wd-tools-icon">
+												<span class="wd-cart-number">0 <span>items</span></span>
+							</span>
+		<span class="wd-tools-text">
+			
+			<span class="subtotal-divider">/</span>
+						<span class="wd-cart-subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;0</bdi></span></span>
+				</span>
+	</a>
+	</div>
+</div>
+<div class="whb-column whb-mobile-left whb-hidden-lg">
+	<div class="wd-tools-element wd-header-mobile-nav wd-style-text">
+	<a href="#" rel="nofollow">
+		<span class="wd-tools-icon">
+					</span>
+	
+		<span class="wd-tools-text">Menu</span>
+	</a>
+</div><!--END wd-header-mobile-nav--></div>
+<div class="whb-column whb-mobile-center whb-hidden-lg">
+	<div class="site-logo">
+	<a href="http://localhost/" class="wd-logo wd-main-logo" rel="home">
+		<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20369%2053'%3E%3C/svg%3E" class="attachment-full size-full" alt="" style="max-width:179px;" height="53" width="369" data-lazy-src="http://localhost/wp-content/uploads/2021/08/wood-logo-white-reserve.svg" /><noscript><img src="http://localhost/wp-content/uploads/2021/08/wood-logo-white-reserve.svg" class="attachment-full size-full" alt="" style="max-width:179px;" height="53" width="369" /></noscript>	</a>
+	</div>
+</div>
+<div class="whb-column whb-mobile-right whb-hidden-lg">
+	
+<div class="wd-header-cart wd-tools-element wd-design-5 cart-widget-opener">
+	<a href="http://localhost/cart/" title="Shopping cart">
+		<span class="wd-tools-icon">
+												<span class="wd-cart-number">0 <span>items</span></span>
+							</span>
+		<span class="wd-tools-text">
+			
+			<span class="subtotal-divider">/</span>
+						<span class="wd-cart-subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;0</bdi></span></span>
+				</span>
+	</a>
+	</div>
+</div>
+		</div>
+	</div>
+</div>
+</div>
+				</header>
+			
+								<div class="main-page-wrapper">
+		
+					 							
+			
+		<!-- MAIN CONTENT AREA -->
+				<div class="container-fluid">
+			<div class="row content-layout-wrapper align-items-start">
+				
+	<div class="site-content shop-content-area col-12 breadcrumbs-location-summary content-with-products" role="main">
+	
+		
+
+<div class="container">
+	</div>
+
+
+<div id="product-232" class="single-product-page single-product-content product-design-default tabs-location-standard tabs-type-tabs meta-location-add_to_cart reviews-location-tabs product-no-bg product type-product post-232 status-publish first instock product_cat-furniture has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
+
+	<div class="container">
+
+		<div class="woocommerce-notices-wrapper"></div>
+		<div class="row product-image-summary-wrap">
+			<div class="product-image-summary col-lg-12 col-12 col-md-12">
+				<div class="row product-image-summary-inner">
+					<div class="col-lg-6 col-12 col-md-6 product-images" >
+						<div class="product-images-inner">
+										 						 			<div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images images row align-items-start thumbs-position-left image-action-zoom" style="opacity: 0; transition: opacity .25s ease-in-out;">
+	<div class="col-lg-9 order-lg-last">
+
+		<figure class="woocommerce-product-gallery__wrapper owl-items-lg-1 owl-items-md-1 owl-items-sm-1 owl-items-xs-1 owl-carousel">
+			<div class="product-image-wrap"><figure data-thumb="http://localhost/wp-content/uploads/2021/10/accessories-product-2.jpg" class="woocommerce-product-gallery__image"><a data-elementor-open-lightbox="no" href="http://localhost/wp-content/uploads/2021/10/accessories-product-2.jpg"><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/10/accessories-product-2.jpg" class="wp-post-image wp-post-image" alt="" title="accessories-product-2" data-caption="" data-src="http://localhost/wp-content/uploads/2021/10/accessories-product-2.jpg" data-large_image="http://localhost/wp-content/uploads/2021/10/accessories-product-2.jpg" data-large_image_width="700" data-large_image_height="800" /></a></figure></div><div class="product-image-wrap"><figure data-thumb="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-2.jpg" class="woocommerce-product-gallery__image"><a data-elementor-open-lightbox="no" href="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-2.jpg"><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-2.jpg" class="" alt="" title="eames-lounge-chair-2" data-caption="" data-src="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-2.jpg" data-large_image="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-2.jpg" data-large_image_width="700" data-large_image_height="800" /></a></figure></div><div class="product-image-wrap"><figure data-thumb="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-3.jpg" class="woocommerce-product-gallery__image"><a data-elementor-open-lightbox="no" href="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-3.jpg"><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-3.jpg" class="" alt="" title="eames-lounge-chair-3" data-caption="" data-src="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-3.jpg" data-large_image="http://localhost/wp-content/uploads/2021/08/eames-lounge-chair-3.jpg" data-large_image_width="700" data-large_image_height="800" /></a></figure></div>		</figure>
+					<div class="product-additional-galleries">
+					 						 						<div class="product-360-button wd-gallery-btn">
+				<a href="#product-360-view" rel="nofollow"><span>360 product view</span></a>
+			</div>
+			<div id="product-360-view" class="product-360-view-wrapper mfp-hide mfp-with-anim">
+				<div class="wd-threed-view wd-product-threed threed-id-806" data-args='{"frames_count":9,"images":["http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-01.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-03.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-05.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-09.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-07.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-11.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-13.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-15.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-17.jpg"],"width":540,"height":405}'>
+										<ul class="threed-view-images"></ul>
+				    <div class="spinner">
+				        <span>0%</span>
+				    </div>
+				</div>
+			</div>
+					 						<div class="wd-show-product-gallery-wrap  wd-gallery-btn"><a href="#" rel="nofollow" class="woodmart-show-product-gallery"><span>Click to enlarge</span></a></div>
+					</div>
+			</div>
+
+			<div class="col-lg-3 order-lg-first">
+			<div class=" thumbnails owl-items-sm-3 owl-items-xs-3"></div>
+		</div>
+	</div>
+						</div>
+					</div>
+										<div class="col-lg-6 col-12 col-md-6 summary entry-summary">
+						<div class="summary-inner">
+															<div class="single-breadcrumbs-wrapper">
+									<div class="single-breadcrumbs">
+																					<nav class="woocommerce-breadcrumb"><a href="http://localhost" class="breadcrumb-link ">Inicio</a><a href="http://localhost/categoria-producto/furniture/" class="breadcrumb-link breadcrumb-link-last">Furniture</a><span class="breadcrumb-last"> Eames lounge chair</span></nav>										
+																								<div class="wd-products-nav">
+								<div class="product-btn product-prev">
+					<a href="http://localhost/producto/prueba-producto/">Previous product<span class="product-btn-icon"></span></a>
+					<div class="wrapper-short">
+						<div class="product-short">
+							<div class="product-short-image">
+								<a href="http://localhost/producto/prueba-producto/" class="product-thumb">
+									<img width="430" height="430" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20430'%3E%3C/svg%3E" class="woocommerce-placeholder wp-post-image" alt="Marcador" data-lazy-srcset="http://localhost/wp-content/uploads/woocommerce-placeholder.png 1200w, http://localhost/wp-content/uploads/woocommerce-placeholder-300x300.png 300w, http://localhost/wp-content/uploads/woocommerce-placeholder-1024x1024.png 1024w, http://localhost/wp-content/uploads/woocommerce-placeholder-150x150.png 150w, http://localhost/wp-content/uploads/woocommerce-placeholder-768x768.png 768w" data-lazy-sizes="(max-width: 430px) 100vw, 430px" data-lazy-src="http://localhost/wp-content/uploads/woocommerce-placeholder.png" /><noscript><img width="430" height="430" src="http://localhost/wp-content/uploads/woocommerce-placeholder.png" class="woocommerce-placeholder wp-post-image" alt="Marcador" srcset="http://localhost/wp-content/uploads/woocommerce-placeholder.png 1200w, http://localhost/wp-content/uploads/woocommerce-placeholder-300x300.png 300w, http://localhost/wp-content/uploads/woocommerce-placeholder-1024x1024.png 1024w, http://localhost/wp-content/uploads/woocommerce-placeholder-150x150.png 150w, http://localhost/wp-content/uploads/woocommerce-placeholder-768x768.png 768w" sizes="(max-width: 430px) 100vw, 430px" /></noscript>								</a>
+							</div>
+							<div class="product-short-description">
+								<a href="http://localhost/producto/prueba-producto/" class="wd-entities-title">
+									Prueba producto								</a>
+								<span class="price">
+									<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>&nbsp;70.000</span>								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<a href="http://localhost/tienda/" class="wd-back-btn">
+					<span>
+						Back to products					</span>
+				</a>
+
+								<div class="product-btn product-next">
+					<a href="http://localhost/producto/classic-wooden-chair/">Next product<span class="product-btn-icon"></span></a>
+					<div class="wrapper-short">
+						<div class="product-short">
+							<div class="product-short-image">
+								<a href="http://localhost/producto/classic-wooden-chair/" class="product-thumb">
+									<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-3.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/10/accessories-product-3.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>								</a>
+							</div>
+							<div class="product-short-description">
+								<a href="http://localhost/producto/classic-wooden-chair/" class="wd-entities-title">
+									Classic wooden chair								</a>
+								<span class="price">
+									<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>&nbsp;299</span>								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+							</div>
+																					</div>
+								</div>
+							
+							<div class="wd-product-brands "><div class="woodmart-product-brand"><a href="http://localhost/brand/klober/"><img width="180" height="100" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20100'%3E%3C/svg%3E" title="KLÖBER" alt="KLÖBER" data-lazy-src="http://localhost/wp-content/uploads/2021/08/brand-klober.png" ><noscript><img width="180" height="100" src="http://localhost/wp-content/uploads/2021/08/brand-klober.png" title="KLÖBER" alt="KLÖBER" ></noscript></a></div></div>
+<h1 itemprop="name" class="product_title wd-entities-title">
+	
+		Eames lounge chair
+	</h1>
+<p class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;399</bdi></span></p>
+<div class="woocommerce-product-details__short-description">
+	<p>Scelerisque facilisi rhoncus non faucibus parturient senectus lobortis a ullamcorper vestibulum mi nibh ultricies a parturient gravida a vestibulum leo sem in. Est cum torquent mi in scelerisque leo aptent per at vitae ante eleifend mollis adipiscing.</p>
+</div>
+							<div class="wd-before-add-to-cart">
+														<link rel="stylesheet" id="elementor-post-7218-css" href="http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_c3aa82e7c309d0c37843d6b70ff86f39.css?ver=1641697028" type="text/css" media="all">
+					<div data-elementor-type="wp-post" data-elementor-id="7218" class="elementor elementor-7218" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-5d4c2bb5 elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="5d4c2bb5" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5b370287" data-id="5b370287" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-557298f8 elementor-widget elementor-widget-wd_infobox" data-id="557298f8" data-element_type="widget" data-widget_type="wd_infobox.default">
+				<div class="elementor-widget-container">
+						 					<div class="info-box-wrapper">
+			<div class="wd-info-box text-left box-icon-align-left box-style-base color-scheme- cursor-pointer" onclick="window.location.href='#'">
+									<div class="box-icon-wrapper  box-with-icon box-icon-with-bg">
+						<div class="info-box-icon">
+															<span class="info-svg-wrapper info-icon" style="width:30px; height:30px;"></span>													</div>
+					</div>
+				
+				<div class="info-box-content">
+					
+											<h4						class="info-box-title title box-title-style-default wd-fontsize-m" data-elementor-setting-key="title">
+								Fast Delivery						</h4>
+					
+					<div class="info-box-inner set-cont-mb-s reset-last-child"
+						 data-elementor-setting-key="content">
+						<p>Chances are there wasn't there wasn't a process.</p>
+					</div>
+	
+									</div>
+			</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-e86f2bf" data-id="e86f2bf" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-5866bf6c elementor-widget elementor-widget-wd_infobox" data-id="5866bf6c" data-element_type="widget" data-widget_type="wd_infobox.default">
+				<div class="elementor-widget-container">
+					<div class="info-box-wrapper">
+			<div class="wd-info-box text-left box-icon-align-left box-style-base color-scheme- cursor-pointer" onclick="window.location.href='#'">
+									<div class="box-icon-wrapper  box-with-icon box-icon-with-bg">
+						<div class="info-box-icon">
+															<span class="info-svg-wrapper info-icon" style="width:30px; height:30px;"></span>													</div>
+					</div>
+				
+				<div class="info-box-content">
+					
+											<h4						class="info-box-title title box-title-style-default wd-fontsize-m" data-elementor-setting-key="title">
+								Best Quality						</h4>
+					
+					<div class="info-box-inner set-cont-mb-s reset-last-child"
+						 data-elementor-setting-key="content">
+						<p>It's content strategy gone awry right from the start.</p>
+					</div>
+	
+									</div>
+			</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+											</div>
+					
+				 			
+	<form class="cart" action="http://localhost/producto/eames-lounge-chair/" method="post" enctype='multipart/form-data'>
+		
+			<div class="quantity">
+				<input type="button" value="-" class="minus" />
+		<label class="screen-reader-text" for="quantity_61da512cab73a">Eames lounge chair cantidad</label>
+		<input
+			type="number"
+			id="quantity_61da512cab73a"
+			class="input-text qty text"
+			step="1"
+			min="1"
+			max=""
+			name="quantity"
+			value="1"
+			title="Cantidad"
+			size="4"
+			placeholder=""
+			inputmode="numeric" />
+		<input type="button" value="+" class="plus" />
+			</div>
+	
+		<button type="submit" name="add-to-cart" value="232" class="single_add_to_cart_button button alt">Añadir al carrito</button>
+
+			</form>
+
+	
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-text wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="232" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+					<div class="wd-wishlist-btn wd-action-btn wd-style-text wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="232" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+					 			            
+            <div id="woodmart_sizeguide" class="mfp-with-anim mfp-hide wd-popup wd-sizeguide ">
+                <h4 class="wd-sizeguide-title">Size and packaging guidelines</h4>
+                <div class="wd-sizeguide-content">		<div data-elementor-type="wp-post" data-elementor-id="827" class="elementor elementor-827" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-5d346cb elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="5d346cb" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-extended">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-ee0be3f" data-id="ee0be3f" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-ffb3a6d elementor-widget elementor-widget-wd_image_or_svg" data-id="ffb3a6d" data-element_type="widget" data-widget_type="wd_image_or_svg.default">
+				<div class="elementor-widget-container">
+			
+		<div class="wd-image text-left">
+								<img width="600" height="342" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20600%20342'%3E%3C/svg%3E" class="attachment-full size-full" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/furniture-sizes.jpg" /><noscript><img width="600" height="342" src="http://localhost/wp-content/uploads/2021/08/furniture-sizes.jpg" class="attachment-full size-full" alt="" /></noscript>					</div>
+
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-9682f04" data-id="9682f04" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-62dc5c9 elementor-widget elementor-widget-wd_infobox" data-id="62dc5c9" data-element_type="widget" data-widget_type="wd_infobox.default">
+				<div class="elementor-widget-container">
+					<div class="info-box-wrapper">
+			<div class="wd-info-box text-left box-icon-align-left box-style-base color-scheme-" >
+									<div class="box-icon-wrapper  box-with-icon box-icon-simple">
+						<div class="info-box-icon">
+															<span class="info-svg-wrapper info-icon" style="width:42px; height:42px;"></span>													</div>
+					</div>
+				
+				<div class="info-box-content">
+					
+					
+					<div class="info-box-inner set-cont-mb-s reset-last-child"
+						 data-elementor-setting-key="content">
+						<p>Fermentum scelerisque hendrerit parturient nullam enim lobortis litora parturient dictumst.<span style="font-size: 14px; color: var(--wd-text-color);"></span></p>
+					</div>
+	
+									</div>
+			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-5193272 elementor-widget elementor-widget-wd_infobox" data-id="5193272" data-element_type="widget" data-widget_type="wd_infobox.default">
+				<div class="elementor-widget-container">
+					<div class="info-box-wrapper">
+			<div class="wd-info-box text-left box-icon-align-left box-style-base color-scheme-" >
+									<div class="box-icon-wrapper  box-with-icon box-icon-simple">
+						<div class="info-box-icon">
+															<span class="info-svg-wrapper info-icon" style="width:42px; height:42px;"></span>													</div>
+					</div>
+				
+				<div class="info-box-content">
+					
+					
+					<div class="info-box-inner set-cont-mb-s reset-last-child"
+						 data-elementor-setting-key="content">
+						<p>Potenti a quisque tincidunt venenatis adipiscing parturient fermentum nisl tincidunt <span class="webkit-html-text-node being-edited editing" tabindex="0" contenteditable="plaintext-only">amentu</span>.</p>
+					</div>
+	
+									</div>
+			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-d3f7ead elementor-widget elementor-widget-wd_infobox" data-id="d3f7ead" data-element_type="widget" data-widget_type="wd_infobox.default">
+				<div class="elementor-widget-container">
+					<div class="info-box-wrapper">
+			<div class="wd-info-box text-left box-icon-align-left box-style-base color-scheme-" >
+									<div class="box-icon-wrapper  box-with-icon box-icon-simple">
+						<div class="info-box-icon">
+															<span class="info-svg-wrapper info-icon" style="width:42px; height:42px;"></span>													</div>
+					</div>
+				
+				<div class="info-box-content">
+					
+					
+					<div class="info-box-inner set-cont-mb-s reset-last-child"
+						 data-elementor-setting-key="content">
+						<p>Scelerisque conubia lobortis a condimentum ad eleifend dui integer maecenas habitant nostra.</p>
+					</div>
+	
+									</div>
+			</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+		</div>
+                                    <div class="responsive-table">
+                        <table class="wd-sizeguide-table">
+                                                                                                <tr>
+                                                                                    <td>Specification</td>
+                                                                                    <td>Chair</td>
+                                                                                    <td>Armchair</td>
+                                                                                    <td>Sofas</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Height</td>
+                                                                                    <td>37&quot;</td>
+                                                                                    <td>42&quot;</td>
+                                                                                    <td>42&quot;</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Width</td>
+                                                                                    <td>26.5&quot;</td>
+                                                                                    <td>32.5&quot;</td>
+                                                                                    <td>142&quot;</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Depth</td>
+                                                                                    <td>19.5&quot;</td>
+                                                                                    <td>22.5&quot;</td>
+                                                                                    <td>24.5&quot;</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Assembly Required</td>
+                                                                                    <td>No</td>
+                                                                                    <td>No</td>
+                                                                                    <td>Yes</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Packaging Type</td>
+                                                                                    <td>Box</td>
+                                                                                    <td>Box</td>
+                                                                                    <td>Box</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Package Weight</td>
+                                                                                    <td>55 lbs.</td>
+                                                                                    <td>64 lbs.</td>
+                                                                                    <td>180 lbs.</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Packaging Dimensions</td>
+                                                                                    <td>27&quot; x 26&quot; x 39&quot;</td>
+                                                                                    <td>45&quot; x 35&quot; x 24&quot;</td>
+                                                                                    <td>46&quot; x 142&quot; x 25&quot;</td>
+                                                                            </tr>
+                                                                                                                                <tr>
+                                                                                    <td>Specification</td>
+                                                                                    <td>Chair</td>
+                                                                                    <td>Armchair</td>
+                                                                                    <td>Sofas</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Height</td>
+                                                                                    <td>37&quot;</td>
+                                                                                    <td>42&quot;</td>
+                                                                                    <td>42&quot;</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Width</td>
+                                                                                    <td>26.5&quot;</td>
+                                                                                    <td>32.5&quot;</td>
+                                                                                    <td>142&quot;</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Depth</td>
+                                                                                    <td>19.5&quot;</td>
+                                                                                    <td>22.5&quot;</td>
+                                                                                    <td>24.5&quot;</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Assembly Required</td>
+                                                                                    <td>No</td>
+                                                                                    <td>No</td>
+                                                                                    <td>Yes</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Packaging Type</td>
+                                                                                    <td>Box</td>
+                                                                                    <td>Box</td>
+                                                                                    <td>Box</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Package Weight</td>
+                                                                                    <td>55 lbs.</td>
+                                                                                    <td>64 lbs.</td>
+                                                                                    <td>180 lbs.</td>
+                                                                            </tr>
+                                                                    <tr>
+                                                                                    <td>Packaging Dimensions</td>
+                                                                                    <td>27&quot; x 26&quot; x 39&quot;</td>
+                                                                                    <td>45&quot; x 35&quot; x 24&quot;</td>
+                                                                                    <td>46&quot; x 142&quot; x 25&quot;</td>
+                                                                            </tr>
+                                                                                    </table>
+                    </div>
+                            </div>
+            
+            <div class="wd-sizeguide-btn wd-action-btn wd-style-text wd-sizeguide-icon">
+                <a class="wd-open-popup" rel="nofollow" href="#woodmart_sizeguide">Size Guide</a>
+            </div>
+        <div class="product_meta">
+
+	
+	
+	<span class="posted_in">Categoría: <a href="http://localhost/categoria-producto/furniture/" rel="tag">Furniture</a></span>
+	
+	
+</div>
+							<div class="product-share">
+					<span class="share-title">Share</span>
+								 			
+			<div class="wd-social-icons text-center icons-design-default icons-size-small color-scheme-dark social-share social-form-circle">
+									<a rel="noopener noreferrer nofollow" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/producto/eames-lounge-chair/" target="_blank" class=" wd-social-icon social-facebook" aria-label="Facebook social link">
+						<span class="wd-icon"></span>
+											</a>
+				
+									<a rel="noopener noreferrer nofollow" href="https://twitter.com/share?url=http://localhost/producto/eames-lounge-chair/" target="_blank" class=" wd-social-icon social-twitter" aria-label="Twitter social link">
+						<span class="wd-icon"></span>
+											</a>
+				
+				
+				
+				
+									<a rel="noopener noreferrer nofollow" href="https://pinterest.com/pin/create/button/?url=http://localhost/producto/eames-lounge-chair/&media=http://localhost/wp-content/uploads/2021/10/accessories-product-2.jpg&description=Eames+lounge+chair" target="_blank" class=" wd-social-icon social-pinterest" aria-label="Pinterest social link">
+						<span class="wd-icon"></span>
+											</a>
+				
+				
+									<a rel="noopener noreferrer nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost/producto/eames-lounge-chair/" target="_blank" class=" wd-social-icon social-linkedin" aria-label="Linkedin social link">
+						<span class="wd-icon"></span>
+											</a>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+								
+								
+				
+									<a rel="noopener noreferrer nofollow" href="https://telegram.me/share/url?url=http://localhost/producto/eames-lounge-chair/" target="_blank" class=" wd-social-icon social-tg" aria-label="Telegram social link">
+						<span class="wd-icon"></span>
+											</a>
+								
+				
+			</div>
+
+						</div>
+											</div>
+					</div>
+				</div><!-- .summary -->
+			</div>
+
+			
+		</div>
+		
+		
+	</div>
+
+			<div class="product-tabs-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 poduct-tabs-inner">
+						
+	<div class="woocommerce-tabs wc-tabs-wrapper tabs-layout-tabs">
+		<ul class="tabs wc-tabs">
+							<li class="description_tab active">
+					<a href="#tab-description">Descripción</a>
+				</li>
+											<li class="additional_information_tab ">
+					<a href="#tab-additional_information">Información adicional</a>
+				</li>
+											<li class="reviews_tab ">
+					<a href="#tab-reviews">Valoraciones (0)</a>
+				</li>
+											<li class="brand_tab_tab ">
+					<a href="#tab-brand_tab">About brand</a>
+				</li>
+											<li class="wd_additional_tab_tab ">
+					<a href="#tab-wd_additional_tab">Shipping &amp; Delivery</a>
+				</li>
+									</ul>
+					<div class="wd-tab-wrapper">
+				<a href="#tab-description" class="wd-accordion-title tab-title-description active">Descripción</a>
+				<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab" id="tab-description">
+					<div class="wc-tab-inner 
+										">
+						<div class="">
+							
+
+		<div data-elementor-type="wp-post" data-elementor-id="232" class="elementor elementor-232" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-70334114 wd-section-stretch opacity-video-bg elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="70334114" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;video&quot;,&quot;background_video_link&quot;:&quot;https:\/\/www.youtube.com\/watch?v=IYwPMtx38Eg&quot;}">
+								<div class="elementor-background-video-container elementor-hidden-phone">
+													<div class="elementor-background-video-embed"></div>
+												</div>
+								<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-25c1d3" data-id="25c1d3" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-4fb1a9ea elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="4fb1a9ea" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-44b90b22" data-id="44b90b22" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4f31b8d8 elementor-widget elementor-widget-wd_title" data-id="4f31b8d8" data-element_type="widget" data-widget_type="wd_title.default">
+				<div class="elementor-widget-container">
+						 					<div class="title-wrapper set-mb-s reset-last-child wd-title-color-white wd-title-style-simple wd-title-size-extra-large text-center">
+
+							<div class="title-subtitle subtitle-color-white subtitle-style-default wd-fontsize-m">
+					CHARLES &amp; RAY EAMES, 1956				</div>
+			
+			<div class="liner-continer">
+				<h4 class="woodmart-title-container title wd-fontsize-xxxl">Lounge Chair</h4> 
+							</div>
+
+							<div class="title-after_title set-cont-mb-s reset-last-child wd-fontsize-s">
+					Amet nibh vel tristique dui id ridiculus ligula scelerisque faucibus platea a est imperdiet parturient aliquam taciti parturient.				</div>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-551a20e8 elementor-widget__width-auto elementor-widget elementor-widget-wd_button" data-id="551a20e8" data-element_type="widget" data-widget_type="wd_button.default">
+				<div class="elementor-widget-container">
+					<div class="wd-button-wrapper text-center" >
+			<a class="btn btn-style-default btn-shape-rectangle btn-size-default btn-color-white btn-icon-pos-right"  href="#">
+				<span class="wd-btn-text" data-elementor-setting-key="text">
+					ADD TO CART				</span>
+
+							</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-662c33ad elementor-widget__width-auto elementor-widget elementor-widget-wd_button" data-id="662c33ad" data-element_type="widget" data-widget_type="wd_button.default">
+				<div class="elementor-widget-container">
+					<div class="wd-button-wrapper text-center" >
+			<a class="btn btn-style-bordered btn-shape-rectangle btn-size-default btn-color-white btn-icon-pos-right"  href="#">
+				<span class="wd-btn-text" data-elementor-setting-key="text">
+					VIEW MORE				</span>
+
+							</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-3997d6e4 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="3997d6e4" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-604104" data-id="604104" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-70f8881e elementor-widget elementor-widget-wd_3d_view" data-id="70f8881e" data-element_type="widget" data-widget_type="wd_3d_view.default">
+				<div class="elementor-widget-container">
+					<div class="wd-threed-view" data-args='{"frames_count":9,"images":["http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-01.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-03.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-05.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-07.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-09.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-11.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-13.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-15.jpg","http:\/\/localhost\/wp-content\/uploads\/2021\/08\/lounge-chair-17.jpg"],"width":540,"height":405}'>
+			<ul class="threed-view-images"></ul>
+			<div class="spinner">
+				<span>0%</span>
+			</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-164f8524 text-center" data-id="164f8524" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-503ac0eb elementor-widget elementor-widget-wd_title" data-id="503ac0eb" data-element_type="widget" data-widget_type="wd_title.default">
+				<div class="elementor-widget-container">
+					<div class="title-wrapper set-mb-s reset-last-child wd-title-color-default wd-title-style-default wd-title-size-extra-large text-center">
+
+							<div class="title-subtitle subtitle-color-default subtitle-style-default wd-fontsize-m">
+					WHAT'S IN IT FOR YOU				</div>
+			
+			<div class="liner-continer">
+				<h4 class="woodmart-title-container title wd-fontsize-xxxl">Eames Lounge<br />
+Chair &amp; Ottoman</h4> 
+							</div>
+
+							<div class="title-after_title set-cont-mb-s reset-last-child wd-fontsize-s">
+					Amet nibh vel tristique dui id ridiculus ligula scelerisque faucibus platea a est imperdiet parturient aliquam taciti parturient odio a mi auctor rhoncus nec sociis natoque dui. Urna lacinia condimentum mi inceptos.				</div>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-231c02e1 elementor-widget__width-auto elementor-widget elementor-widget-wd_button" data-id="231c02e1" data-element_type="widget" data-widget_type="wd_button.default">
+				<div class="elementor-widget-container">
+					<div class="wd-button-wrapper text-center" >
+			<a class="btn btn-style-default btn-shape-rectangle btn-size-default btn-color-black btn-icon-pos-right"  href="#">
+				<span class="wd-btn-text" data-elementor-setting-key="text">
+					SHOP NOW				</span>
+
+							</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-32f84899 elementor-widget__width-auto elementor-widget elementor-widget-wd_button" data-id="32f84899" data-element_type="widget" data-widget_type="wd_button.default">
+				<div class="elementor-widget-container">
+					<div class="wd-button-wrapper text-center" >
+			<a class="btn btn-style-bordered btn-shape-rectangle btn-size-default btn-color-default btn-icon-pos-right"  href="#">
+				<span class="wd-btn-text" data-elementor-setting-key="text">
+					VIEW MORE				</span>
+
+							</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-2deb1a8a wd-section-stretch elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2deb1a8a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-695e2fb5 text-center" data-id="695e2fb5" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4910dd51 elementor-widget elementor-widget-wd_title" data-id="4910dd51" data-element_type="widget" data-widget_type="wd_title.default">
+				<div class="elementor-widget-container">
+					<div class="title-wrapper set-mb-s reset-last-child wd-title-color-default wd-title-style-default wd-title-size-extra-large text-center">
+
+							<div class="title-subtitle subtitle-color-default subtitle-style-default wd-fontsize-m">
+					CHARLES &amp; RAY EAMES, 1956				</div>
+			
+			<div class="liner-continer">
+				<h4 class="woodmart-title-container title wd-fontsize-xxxl">Ottoman &amp;<br />
+Modern Design</h4> 
+							</div>
+
+							<div class="title-after_title set-cont-mb-s reset-last-child wd-fontsize-s">
+					Amet nibh vel tristique dui id ridiculus ligula scelerisque faucibus platea a est imperdiet parturient aliquam taciti parturient odio a mi auctor rhoncus nec sociis natoque dui. Urna lacinia condimentum mi inceptos.				</div>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-6a5cbbcb elementor-widget__width-auto elementor-widget elementor-widget-wd_button" data-id="6a5cbbcb" data-element_type="widget" data-widget_type="wd_button.default">
+				<div class="elementor-widget-container">
+					<div class="wd-button-wrapper text-center" >
+			<a class="btn btn-style-default btn-shape-rectangle btn-size-default btn-color-black btn-icon-pos-right"  href="#">
+				<span class="wd-btn-text" data-elementor-setting-key="text">
+					ABOUT US				</span>
+
+							</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-70ba5a08 elementor-widget__width-auto elementor-widget elementor-widget-wd_button" data-id="70ba5a08" data-element_type="widget" data-widget_type="wd_button.default">
+				<div class="elementor-widget-container">
+					<div class="wd-button-wrapper text-center" >
+			<a class="btn btn-style-bordered btn-shape-rectangle btn-size-default btn-color-default btn-icon-pos-right"  href="#">
+				<span class="wd-btn-text" data-elementor-setting-key="text">
+					VIEW MORE				</span>
+
+							</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-40aac714" data-id="40aac714" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-62b10626 elementor-widget elementor-widget-wd_images_gallery" data-id="62b10626" data-element_type="widget" data-widget_type="wd_images_gallery.default">
+				<div class="elementor-widget-container">
+						 					<div class="wd-images-gallery wd-justify-center wd-items-middle view-grid photoswipe-images" >
+			<div class="gallery-images row wd-spacing-0">
+														<div class="wd-gallery-item  col-6">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-gallery-1.jpg"data-width="860" data-height="688" data-index="1" data-elementor-open-lightbox="no">
+						
+						<img width="375" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20375%20300'%3E%3C/svg%3E"alt="lounge-chair-gallery-1" data-lazy-src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-1-piqgmhijrsw6o7nweyvl2z4jkvyysy11x8wanca3co.jpg"><noscript><img width="375" height="300" src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-1-piqgmhijrsw6o7nweyvl2z4jkvyysy11x8wanca3co.jpg"alt="lounge-chair-gallery-1"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item  col-6">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-gallery-2.jpg"data-width="860" data-height="688" data-index="2" data-elementor-open-lightbox="no">
+						
+						<img width="375" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20375%20300'%3E%3C/svg%3E"alt="lounge-chair-gallery-2" data-lazy-src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-2-piqgmigdymxgztmj9ha7ngw069uc0n4s9djs4m8p6g.jpg"><noscript><img width="375" height="300" src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-2-piqgmigdymxgztmj9ha7ngw069uc0n4s9djs4m8p6g.jpg"alt="lounge-chair-gallery-2"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item  col-6">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-gallery-3.jpg"data-width="860" data-height="688" data-index="3" data-elementor-open-lightbox="no">
+						
+						<img width="375" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20375%20300'%3E%3C/svg%3E"alt="lounge-chair-gallery-3" data-lazy-src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-3-piqgmigdymxgztmj9ha7ngw069uc0n4s9djs4m8p6g.jpg"><noscript><img width="375" height="300" src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-3-piqgmigdymxgztmj9ha7ngw069uc0n4s9djs4m8p6g.jpg"alt="lounge-chair-gallery-3"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item  col-6">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-gallery-4.jpg"data-width="860" data-height="688" data-index="4" data-elementor-open-lightbox="no">
+						
+						<img width="375" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20375%20300'%3E%3C/svg%3E"alt="lounge-chair-gallery-4" data-lazy-src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-4-piqgmje85gyrbfl63zou7yngrnpp8c8ili79lw7b08.jpg"><noscript><img width="375" height="300" src="http://localhost/wp-content/uploads/elementor/thumbs/lounge-chair-gallery-4-piqgmje85gyrbfl63zou7yngrnpp8c8ili79lw7b08.jpg"alt="lounge-chair-gallery-4"></noscript>
+													</a>
+											</div>
+								</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-673bcda3 elementor-section-content-top elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="673bcda3" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-7e0b3d07" data-id="7e0b3d07" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-2a293777 elementor-widget elementor-widget-wd_title" data-id="2a293777" data-element_type="widget" data-widget_type="wd_title.default">
+				<div class="elementor-widget-container">
+					<div class="title-wrapper set-mb-s reset-last-child wd-title-color-default wd-title-style-default wd-title-size-medium text-center">
+
+							<div class="title-subtitle subtitle-color-default subtitle-style-default wd-fontsize-xs">
+					WOODEN MATERIALS				</div>
+			
+			<div class="liner-continer">
+				<h4 class="woodmart-title-container title wd-fontsize-xl">SEAT AND BACK SHELL</h4> 
+							</div>
+
+							<div class="title-after_title set-cont-mb-s reset-last-child wd-fontsize-s">
+					Amet nibh vel tristique dui id ridiculus ligula scelerisque faucibus platea a est imperdiet parturient aliquam taciti parturient.				</div>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-415a0249 elementor-widget elementor-widget-wd_images_gallery" data-id="415a0249" data-element_type="widget" data-widget_type="wd_images_gallery.default">
+				<div class="elementor-widget-container">
+					<div class="wd-images-gallery wd-justify-center wd-items-middle view-carousel photoswipe-images wd-carousel-spacing-10 wd-carousel-container" data-owl-carousel data-speed="" data-wrap="no" data-hide_prev_next_buttons="yes" data-desktop="3" data-tablet_landscape="3" data-tablet="2" data-mobile="1">
+			<div class="gallery-images owl-carousel owl-items-lg-3 owl-items-md-3 owl-items-sm-2 owl-items-xs-1">
+														<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-1.jpg"data-width="150" data-height="150" data-index="1" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-materials-1" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-1.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-1.jpg"alt="lounge-chair-materials-1"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-2.jpg"data-width="150" data-height="150" data-index="2" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-materials-2" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-2.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-2.jpg"alt="lounge-chair-materials-2"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-3.jpg"data-width="150" data-height="150" data-index="3" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-materials-3" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-3.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-3.jpg"alt="lounge-chair-materials-3"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-4.jpg"data-width="150" data-height="150" data-index="4" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-materials-4" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-4.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-materials-4.jpg"alt="lounge-chair-materials-4"></noscript>
+													</a>
+											</div>
+								</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-3074a9f" data-id="3074a9f" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4c53117f elementor-widget elementor-widget-wd_title" data-id="4c53117f" data-element_type="widget" data-widget_type="wd_title.default">
+				<div class="elementor-widget-container">
+					<div class="title-wrapper set-mb-s reset-last-child wd-title-color-default wd-title-style-default wd-title-size-medium text-center">
+
+							<div class="title-subtitle subtitle-color-default subtitle-style-default wd-fontsize-xs">
+					TEXTILES MATERIALS				</div>
+			
+			<div class="liner-continer">
+				<h4 class="woodmart-title-container title wd-fontsize-xl">LEATHER PREMIUM</h4> 
+							</div>
+
+							<div class="title-after_title set-cont-mb-s reset-last-child wd-fontsize-s">
+					Amet nibh vel tristique dui id ridiculus ligula scelerisque faucibus platea a est imperdiet parturient aliquam taciti parturient.				</div>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-26d284ba elementor-widget elementor-widget-wd_images_gallery" data-id="26d284ba" data-element_type="widget" data-widget_type="wd_images_gallery.default">
+				<div class="elementor-widget-container">
+					<div class="wd-images-gallery wd-justify-center wd-items-middle view-carousel photoswipe-images wd-carousel-spacing-10 wd-carousel-container" data-owl-carousel data-speed="" data-wrap="no" data-hide_prev_next_buttons="yes" data-desktop="3" data-tablet_landscape="3" data-tablet="2" data-mobile="1">
+			<div class="gallery-images owl-carousel owl-items-lg-3 owl-items-md-3 owl-items-sm-2 owl-items-xs-1">
+														<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-3.jpg"data-width="150" data-height="150" data-index="1" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-textiles-3" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-3.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-3.jpg"alt="lounge-chair-textiles-3"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-2.jpg"data-width="150" data-height="150" data-index="2" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-textiles-2" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-2.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-2.jpg"alt="lounge-chair-textiles-2"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-1.jpg"data-width="150" data-height="150" data-index="3" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-textiles-1" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-1.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-1.jpg"alt="lounge-chair-textiles-1"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-4.jpg"data-width="150" data-height="150" data-index="4" data-elementor-open-lightbox="no">
+						
+						<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"alt="lounge-chair-textiles-4" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-4.jpg"><noscript><img width="150" height="150" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-textiles-4.jpg"alt="lounge-chair-textiles-4"></noscript>
+													</a>
+											</div>
+								</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-60c64880 wd-section-stretch-content elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="60c64880" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-no">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-37bc1c97" data-id="37bc1c97" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-462557d2 elementor-widget elementor-widget-wd_images_gallery" data-id="462557d2" data-element_type="widget" data-widget_type="wd_images_gallery.default">
+				<div class="elementor-widget-container">
+					<div class="wd-images-gallery wd-justify-center wd-items-middle view-carousel photoswipe-images wd-carousel-spacing-0 wd-carousel-container" data-owl-carousel data-speed="" data-wrap="no" data-hide_pagination_control="yes" data-hide_prev_next_buttons="no" data-desktop="3" data-tablet_landscape="3" data-tablet="2" data-mobile="1">
+			<div class="gallery-images owl-carousel owl-items-lg-3 owl-items-md-3 owl-items-sm-2 owl-items-xs-1">
+														<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-1.jpg"data-width="650" data-height="488" data-index="1" data-elementor-open-lightbox="no">
+						
+						<img width="650" height="488" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20650%20488'%3E%3C/svg%3E"alt="lounge-chair-carousel-1" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-1.jpg"><noscript><img width="650" height="488" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-1.jpg"alt="lounge-chair-carousel-1"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-2-1.jpg"data-width="650" data-height="488" data-index="2" data-elementor-open-lightbox="no">
+						
+						<img width="650" height="488" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20650%20488'%3E%3C/svg%3E"alt="lounge-chair-carousel-2" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-2-1.jpg"><noscript><img width="650" height="488" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-2-1.jpg"alt="lounge-chair-carousel-2"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-3-1.jpg"data-width="650" data-height="488" data-index="3" data-elementor-open-lightbox="no">
+						
+						<img width="650" height="488" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20650%20488'%3E%3C/svg%3E"alt="lounge-chair-carousel-3" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-3-1.jpg"><noscript><img width="650" height="488" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-3-1.jpg"alt="lounge-chair-carousel-3"></noscript>
+													</a>
+											</div>
+															<div class="wd-gallery-item">
+													<a  href="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-4-1.jpg"data-width="650" data-height="488" data-index="4" data-elementor-open-lightbox="no">
+						
+						<img width="650" height="488" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20650%20488'%3E%3C/svg%3E"alt="lounge-chair-carousel-4" data-lazy-src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-4-1.jpg"><noscript><img width="650" height="488" src="http://localhost/wp-content/uploads/2021/08/lounge-chair-carousel-4-1.jpg"alt="lounge-chair-carousel-4"></noscript>
+													</a>
+											</div>
+								</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+								</div>
+					</div>
+				</div>
+			</div>
+								<div class="wd-tab-wrapper">
+				<a href="#tab-additional_information" class="wd-accordion-title tab-title-additional_information ">Información adicional</a>
+				<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--additional_information panel entry-content wc-tab" id="tab-additional_information">
+					<div class="wc-tab-inner 
+										">
+						<div class="">
+							
+
+<table class="woocommerce-product-attributes shop_attributes">
+			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_brand">
+			<th class="woocommerce-product-attributes-item__label">Brand</th>
+			<td class="woocommerce-product-attributes-item__value"><p><a href="http://localhost/brand/klober/" rel="tag">KLÖBER</a></p>
+</td>
+		</tr>
+	</table>
+						</div>
+					</div>
+				</div>
+			</div>
+								<div class="wd-tab-wrapper">
+				<a href="#tab-reviews" class="wd-accordion-title tab-title-reviews ">Valoraciones (0)</a>
+				<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab" id="tab-reviews">
+					<div class="wc-tab-inner 
+										">
+						<div class="">
+							<div id="reviews" class="woocommerce-Reviews">
+	<div id="comments">
+		<h2 class="woocommerce-Reviews-title">
+			Valoraciones		</h2>
+
+					<p class="woocommerce-noreviews">No hay valoraciones aún.</p>
+			</div>
+
+			<div id="review_form_wrapper">
+			<div id="review_form">
+					<div id="respond" class="comment-respond">
+		<span id="reply-title" class="comment-reply-title">Sé el primero en valorar &ldquo;Eames lounge chair&rdquo; <small><a rel="nofollow" id="cancel-comment-reply-link" href="/producto/eames-lounge-chair/#respond" style="display:none;">Cancelar respuesta</a></small></span><form action="http://localhost/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p class="comment-notes"><span id="email-notes">Tu dirección de correo electrónico no será publicada.</span> Los campos obligatorios están marcados con <span class="required">*</span></p><div class="comment-form-rating"><label for="rating">Tu puntuación&nbsp;<span class="required">*</span></label><select name="rating" id="rating" required>
+						<option value="">Puntuar&hellip;</option>
+						<option value="5">Perfecto</option>
+						<option value="4">Bueno</option>
+						<option value="3">Normal</option>
+						<option value="2">No está tan mal</option>
+						<option value="1">Muy pobre</option>
+					</select></div><p class="comment-form-comment"><label for="comment">Tu valoración&nbsp;<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" required></textarea></p><p class="comment-form-author"><label for="author">Nombre&nbsp;<span class="required">*</span></label><input id="author" name="author" type="text" value="" size="30" required /></p>
+<p class="comment-form-email"><label for="email">Correo electrónico&nbsp;<span class="required">*</span></label><input id="email" name="email" type="email" value="" size="30" required /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que haga un comentario.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Enviar" /> <input type='hidden' name='comment_post_ID' value='232' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p></form>	</div><!-- #respond -->
+				</div>
+		</div>
+	
+	<div class="clear"></div>
+</div>
+						</div>
+					</div>
+				</div>
+			</div>
+								<div class="wd-tab-wrapper">
+				<a href="#tab-brand_tab" class="wd-accordion-title tab-title-brand_tab ">About brand</a>
+				<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--brand_tab panel entry-content wc-tab" id="tab-brand_tab">
+					<div class="wc-tab-inner 
+										">
+						<div class="">
+							<div class="woodmart-product-brand-description">		<div data-elementor-type="wp-post" data-elementor-id="228" class="elementor elementor-228" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-1d4d0420 elementor-section-content-top elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="1d4d0420" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-53849b09" data-id="53849b09" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-16856fc elementor-widget__width-auto elementor-widget elementor-widget-wd_image_or_svg" data-id="16856fc" data-element_type="widget" data-widget_type="wd_image_or_svg.default">
+				<div class="elementor-widget-container">
+			
+		<div class="wd-image text-left">
+								<img width="170" height="50" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20170%2050'%3E%3C/svg%3E" title="brand-klober" alt="brand-klober" data-lazy-src="http://localhost/wp-content/uploads/elementor/thumbs/brand-klober-piqght9dajywxmx7pfyv0htvy52j7dhudv8r83sino.png" /><noscript><img width="170" height="50" src="http://localhost/wp-content/uploads/elementor/thumbs/brand-klober-piqght9dajywxmx7pfyv0htvy52j7dhudv8r83sino.png" title="brand-klober" alt="brand-klober" /></noscript>					</div>
+
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-16b7c5f elementor-widget elementor-widget-wd_text_block" data-id="16b7c5f" data-element_type="widget" data-widget_type="wd_text_block.default">
+				<div class="elementor-widget-container">
+					<div class="wd-text-block reset-last-child text-left">
+			
+			<p>Parturient ut id tellus vulputatre ac ultrlices a part ouriesnt sapien dignissim <a href="#"><strong>partu rient</strong></a> a a inter drum vehicula. Ornare metus laoreet tincidunt <a href="#"><strong>eros rolem</strong></a> tristique pretium malada.</p>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-32c39f2 elementor-widget elementor-widget-wd_text_block" data-id="32c39f2" data-element_type="widget" data-widget_type="wd_text_block.default">
+				<div class="elementor-widget-container">
+					<div class="wd-text-block reset-last-child text-left">
+			
+			<p><em>Cras rhoncus vivamus luctus platea arcu laoreet selm. Curae est condenectus sed hac a parturient vestibulum.</em></p>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-7c0620bf elementor-widget elementor-widget-wd_button" data-id="7c0620bf" data-element_type="widget" data-widget_type="wd_button.default">
+				<div class="elementor-widget-container">
+					<div class="wd-button-wrapper text-left" >
+			<a class="btn btn-style-link btn-shape- btn-size-default btn-color-default btn-icon-pos-right"  href="#">
+				<span class="wd-btn-text" data-elementor-setting-key="text">
+					MORE PRODUCTS				</span>
+
+							</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-57c18b4d elementor-hidden-phone elementor-hidden-tablet" data-id="57c18b4d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-1e9ce577 elementor-widget elementor-widget-wd_products" data-id="1e9ce577" data-element_type="widget" data-widget_type="wd_products.default">
+				<div class="elementor-widget-container">
+						 						 								<div class="wd-products-element">
+			
+			
+			<div class="products elements-grid align-items-start row wd-products-holder pagination- wd-spacing-20 grid-columns-3" data-paged="1" data-atts="{&quot;element_title&quot;:null,&quot;post_type&quot;:&quot;product&quot;,&quot;include&quot;:null,&quot;taxonomies&quot;:&quot;&quot;,&quot;offset&quot;:&quot;&quot;,&quot;orderby&quot;:&quot;&quot;,&quot;query_type&quot;:&quot;OR&quot;,&quot;order&quot;:&quot;ASC&quot;,&quot;meta_key&quot;:null,&quot;exclude&quot;:&quot;&quot;,&quot;shop_tools&quot;:null,&quot;speed&quot;:null,&quot;slides_per_view&quot;:null,&quot;wrap&quot;:null,&quot;autoplay&quot;:null,&quot;center_mode&quot;:null,&quot;hide_pagination_control&quot;:null,&quot;hide_prev_next_buttons&quot;:null,&quot;scroll_per_page&quot;:null,&quot;carousel_js_inline&quot;:&quot;no&quot;,&quot;layout&quot;:&quot;grid&quot;,&quot;pagination&quot;:&quot;&quot;,&quot;items_per_page&quot;:&quot;3&quot;,&quot;spacing&quot;:&quot;20&quot;,&quot;columns&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;3&quot;,&quot;sizes&quot;:[]},&quot;products_masonry&quot;:&quot;&quot;,&quot;products_different_sizes&quot;:&quot;&quot;,&quot;product_quantity&quot;:null,&quot;product_hover&quot;:&quot;info-alt&quot;,&quot;sale_countdown&quot;:&quot;0&quot;,&quot;stock_progress_bar&quot;:&quot;0&quot;,&quot;highlighted_products&quot;:&quot;0&quot;,&quot;products_bordered_grid&quot;:&quot;0&quot;,&quot;img_size&quot;:&quot;large&quot;,&quot;ajax_page&quot;:&quot;&quot;,&quot;force_not_ajax&quot;:&quot;no&quot;,&quot;lazy_loading&quot;:&quot;no&quot;,&quot;scroll_carousel_init&quot;:null,&quot;custom_sizes&quot;:false,&quot;elementor&quot;:true}" data-source="shortcode" data-columns="3">
+		
+		
+								<div class="product-grid-item product wd-hover-info-alt  col-md-4 col-6 first  type-product post-372 status-publish instock product_cat-furniture has-post-thumbnail taxable shipping-taxable purchasable product-type-simple" data-loop="1" data-id="372">
+
+	
+<div class="product-element-top">
+	<a href="http://localhost/producto/augue-adipiscing-euismod/" class="product-image-link">
+		<img width="700" height="800" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20800'%3E%3C/svg%3E" class="attachment-large size-large" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-8.jpg" /><noscript><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/10/accessories-product-8.jpg" class="attachment-large size-large" alt="" /></noscript>	</a>
+				<div class="hover-img">
+				<a href="http://localhost/producto/augue-adipiscing-euismod/">
+					<img width="700" height="800" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20800'%3E%3C/svg%3E" class="attachment-large size-large" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/variable-product-example-2.jpg" /><noscript><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/08/variable-product-example-2.jpg" class="attachment-large size-large" alt="" /></noscript>				</a>
+			</div>
+			
+	<div class="top-information wd-fill">
+
+		<h3 class="wd-entities-title"><a href="http://localhost/producto/augue-adipiscing-euismod/">Augue adipiscing euismod</a></h3>				<div class="wd-product-cats">
+			<a href="http://localhost/categoria-producto/furniture/" rel="tag">Furniture</a>		</div>
+		
+				
+		
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;199</bdi></span></span>
+
+		<div class="wd-add-btn wd-add-btn-replace">
+			<a href="?add-to-cart=372" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop" data-product_id="372" data-product_sku="" aria-label="Añade &ldquo;Augue adipiscing euismod&rdquo; a tu carrito" rel="nofollow"><span>Añadir al carrito</span></a>		</div> 
+	</div>
+
+	<div class="wd-buttons wd-pos-r-t color-scheme-light">
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-icon wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="372" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+							<div class="quick-view wd-action-btn wd-style-icon wd-quick-view-icon">
+				<a
+					href="http://localhost/producto/augue-adipiscing-euismod/"
+					class="open-quick-view quick-view-button"
+					data-id="372">Quick view</a>
+			</div>
+							<div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="372" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+			</div>
+				<div class="quick-shop-wrapper wd-fill wd-scroll">
+				<div class="quick-shop-close wd-action-btn wd-style-text wd-cross-icon"><a href="#" rel="nofollow noopener">Close</a></div>
+				<div class="quick-shop-form wd-scroll-content">
+				</div>
+			</div>
+		</div>
+
+
+
+</div>								<div class="product-grid-item product wd-hover-info-alt  col-md-4 col-6 type-product post-270 status-publish instock product_cat-furniture has-post-thumbnail taxable shipping-taxable purchasable product-type-simple" data-loop="2" data-id="270">
+
+	
+<div class="product-element-top">
+	<a href="http://localhost/producto/classic-wooden-chair/" class="product-image-link">
+		<img width="700" height="800" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20800'%3E%3C/svg%3E" class="attachment-large size-large" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-3.jpg" /><noscript><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/10/accessories-product-3.jpg" class="attachment-large size-large" alt="" /></noscript>	</a>
+				<div class="hover-img">
+				<a href="http://localhost/producto/classic-wooden-chair/">
+					<img width="700" height="800" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20800'%3E%3C/svg%3E" class="attachment-large size-large" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/classic-wooden-chair-2.jpg" /><noscript><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/08/classic-wooden-chair-2.jpg" class="attachment-large size-large" alt="" /></noscript>				</a>
+			</div>
+			
+	<div class="top-information wd-fill">
+
+		<h3 class="wd-entities-title"><a href="http://localhost/producto/classic-wooden-chair/">Classic wooden chair</a></h3>				<div class="wd-product-cats">
+			<a href="http://localhost/categoria-producto/furniture/" rel="tag">Furniture</a>		</div>
+		
+				
+		
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;299</bdi></span></span>
+
+		<div class="wd-add-btn wd-add-btn-replace">
+			<a href="?add-to-cart=270" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop" data-product_id="270" data-product_sku="" aria-label="Añade &ldquo;Classic wooden chair&rdquo; a tu carrito" rel="nofollow"><span>Añadir al carrito</span></a>		</div> 
+	</div>
+
+	<div class="wd-buttons wd-pos-r-t color-scheme-light">
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-icon wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="270" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+							<div class="quick-view wd-action-btn wd-style-icon wd-quick-view-icon">
+				<a
+					href="http://localhost/producto/classic-wooden-chair/"
+					class="open-quick-view quick-view-button"
+					data-id="270">Quick view</a>
+			</div>
+							<div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="270" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+			</div>
+				<div class="quick-shop-wrapper wd-fill wd-scroll">
+				<div class="quick-shop-close wd-action-btn wd-style-text wd-cross-icon"><a href="#" rel="nofollow noopener">Close</a></div>
+				<div class="quick-shop-form wd-scroll-content">
+				</div>
+			</div>
+		</div>
+
+
+
+</div>								<div class="product-grid-item product wd-hover-info-alt  col-md-4 col-6 last  type-product post-334 status-publish last instock product_cat-cooking has-post-thumbnail taxable shipping-taxable purchasable product-type-simple" data-loop="3" data-id="334">
+
+	
+<div class="product-element-top">
+	<a href="http://localhost/producto/decoration-wooden-present/" class="product-image-link">
+		<img width="700" height="800" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20800'%3E%3C/svg%3E" class="attachment-large size-large" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-1.jpg" /><noscript><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/10/accessories-product-1.jpg" class="attachment-large size-large" alt="" /></noscript>	</a>
+				<div class="hover-img">
+				<a href="http://localhost/producto/decoration-wooden-present/">
+					<img width="700" height="800" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20800'%3E%3C/svg%3E" class="attachment-large size-large" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/decoration-wooden-presen-2.jpg" /><noscript><img width="700" height="800" src="http://localhost/wp-content/uploads/2021/08/decoration-wooden-presen-2.jpg" class="attachment-large size-large" alt="" /></noscript>				</a>
+			</div>
+			
+	<div class="top-information wd-fill">
+
+		<h3 class="wd-entities-title"><a href="http://localhost/producto/decoration-wooden-present/">Decoration wooden present</a></h3>				<div class="wd-product-cats">
+			<a href="http://localhost/categoria-producto/cooking/" rel="tag">Cooking</a>		</div>
+		
+				
+		<div class="star-rating" role="img" aria-label="Valorado en 5.00 de 5"><span style="width:100%">Valorado en <strong class="rating">5.00</strong> de 5</span></div>
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;89</bdi></span></span>
+
+		<div class="wd-add-btn wd-add-btn-replace">
+			<a href="?add-to-cart=334" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop" data-product_id="334" data-product_sku="" aria-label="Añade &ldquo;Decoration wooden present&rdquo; a tu carrito" rel="nofollow"><span>Añadir al carrito</span></a>		</div> 
+	</div>
+
+	<div class="wd-buttons wd-pos-r-t color-scheme-light">
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-icon wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="334" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+							<div class="quick-view wd-action-btn wd-style-icon wd-quick-view-icon">
+				<a
+					href="http://localhost/producto/decoration-wooden-present/"
+					class="open-quick-view quick-view-button"
+					data-id="334">Quick view</a>
+			</div>
+							<div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="334" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+			</div>
+				<div class="quick-shop-wrapper wd-fill wd-scroll">
+				<div class="quick-shop-close wd-action-btn wd-style-text wd-cross-icon"><a href="#" rel="nofollow noopener">Close</a></div>
+				<div class="quick-shop-form wd-scroll-content">
+				</div>
+			</div>
+		</div>
+
+
+
+</div>		
+				</div>
+	
+		
+		
+					</div>
+		
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+		</div>						</div>
+					</div>
+				</div>
+			</div>
+								<div class="wd-tab-wrapper">
+				<a href="#tab-wd_additional_tab" class="wd-accordion-title tab-title-wd_additional_tab ">Shipping &amp; Delivery</a>
+				<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--wd_additional_tab panel entry-content wc-tab" id="tab-wd_additional_tab">
+					<div class="wc-tab-inner 
+										">
+						<div class="">
+													</div>
+					</div>
+				</div>
+			</div>
+								</div>
+
+					</div>
+				</div>	
+			</div>
+		</div>
+	
+	
+	<div class="container related-and-upsells">
+	<div class="related-products">
+		
+				<h3 class="title slider-title">Productos relacionados</h3>
+				
+					 						<div id="carousel-858"
+				 class="wd-carousel-container  slider-type-product wd-carousel-spacing-20 wd-wpb" data-owl-carousel data-desktop="4" data-tablet_landscape="4" data-tablet="3" data-mobile="2">
+								<div class="owl-carousel owl-items-lg-4 owl-items-md-4 owl-items-sm-3 owl-items-xs-2">
+					
+							<div class="slide-product owl-carousel-item">
+			
+											<div class="product-grid-item product wd-hover-quick type-product post-300 status-publish last instock product_cat-furniture has-post-thumbnail taxable shipping-taxable product-type-grouped" data-loop="1" data-id="300">
+
+	
+<div class="product-element-top">
+	<a href="http://localhost/producto/wooden-single-drawer/" class="product-image-link">
+		<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-4.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/10/accessories-product-4.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>	</a>
+				<div class="hover-img">
+				<a href="http://localhost/producto/wooden-single-drawer/">
+					<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/wooden-single-drawer-2.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/08/wooden-single-drawer-2.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>				</a>
+			</div>
+				<div class="wd-buttons wd-pos-r-t">
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-icon wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="300" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+							<div class="quick-view wd-action-btn wd-style-icon wd-quick-view-icon">
+				<a
+					href="http://localhost/producto/wooden-single-drawer/"
+					class="open-quick-view quick-view-button"
+					data-id="300">Quick view</a>
+			</div>
+							<div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="300" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+			</div>
+
+	<div class="wd-add-btn wd-add-btn-replace">
+		
+		<a href="http://localhost/producto/wooden-single-drawer/" data-quantity="1" class="button product_type_grouped add-to-cart-loop" data-product_id="300" data-product_sku="" aria-label="Ver productos en el grupo &ldquo;Wooden single drawer&rdquo;" rel="nofollow"><span>Ver productos</span></a>	</div>
+				<div class="quick-shop-wrapper wd-fill wd-scroll">
+				<div class="quick-shop-close wd-action-btn wd-style-text wd-cross-icon"><a href="#" rel="nofollow noopener">Close</a></div>
+				<div class="quick-shop-form wd-scroll-content">
+				</div>
+			</div>
+		</div>
+<h3 class="wd-entities-title"><a href="http://localhost/producto/wooden-single-drawer/">Wooden single drawer</a></h3>
+		<div class="wd-product-cats">
+			<a href="http://localhost/categoria-producto/furniture/" rel="tag">Furniture</a>		</div>
+		
+
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;89</bdi></span> &ndash; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;299</bdi></span></span>
+
+
+
+</div>					
+		</div>
+				<div class="slide-product owl-carousel-item">
+			
+											<div class="product-grid-item product wd-hover-quick type-product post-372 status-publish first instock product_cat-furniture has-post-thumbnail taxable shipping-taxable purchasable product-type-simple" data-loop="2" data-id="372">
+
+	
+<div class="product-element-top">
+	<a href="http://localhost/producto/augue-adipiscing-euismod/" class="product-image-link">
+		<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-8.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/10/accessories-product-8.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>	</a>
+				<div class="hover-img">
+				<a href="http://localhost/producto/augue-adipiscing-euismod/">
+					<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/variable-product-example-2.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/08/variable-product-example-2.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>				</a>
+			</div>
+				<div class="wd-buttons wd-pos-r-t">
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-icon wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="372" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+							<div class="quick-view wd-action-btn wd-style-icon wd-quick-view-icon">
+				<a
+					href="http://localhost/producto/augue-adipiscing-euismod/"
+					class="open-quick-view quick-view-button"
+					data-id="372">Quick view</a>
+			</div>
+							<div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="372" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+			</div>
+
+	<div class="wd-add-btn wd-add-btn-replace">
+		
+		<a href="?add-to-cart=372" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop" data-product_id="372" data-product_sku="" aria-label="Añade &ldquo;Augue adipiscing euismod&rdquo; a tu carrito" rel="nofollow"><span>Añadir al carrito</span></a>	</div>
+				<div class="quick-shop-wrapper wd-fill wd-scroll">
+				<div class="quick-shop-close wd-action-btn wd-style-text wd-cross-icon"><a href="#" rel="nofollow noopener">Close</a></div>
+				<div class="quick-shop-form wd-scroll-content">
+				</div>
+			</div>
+		</div>
+<h3 class="wd-entities-title"><a href="http://localhost/producto/augue-adipiscing-euismod/">Augue adipiscing euismod</a></h3>
+		<div class="wd-product-cats">
+			<a href="http://localhost/categoria-producto/furniture/" rel="tag">Furniture</a>		</div>
+		
+
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;199</bdi></span></span>
+
+
+
+</div>					
+		</div>
+				<div class="slide-product owl-carousel-item">
+			
+											<div class="product-grid-item product wd-hover-quick type-product post-270 status-publish last instock product_cat-furniture has-post-thumbnail taxable shipping-taxable purchasable product-type-simple" data-loop="3" data-id="270">
+
+	
+<div class="product-element-top">
+	<a href="http://localhost/producto/classic-wooden-chair/" class="product-image-link">
+		<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-3.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/10/accessories-product-3.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>	</a>
+				<div class="hover-img">
+				<a href="http://localhost/producto/classic-wooden-chair/">
+					<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/classic-wooden-chair-2.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/08/classic-wooden-chair-2.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>				</a>
+			</div>
+				<div class="wd-buttons wd-pos-r-t">
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-icon wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="270" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+							<div class="quick-view wd-action-btn wd-style-icon wd-quick-view-icon">
+				<a
+					href="http://localhost/producto/classic-wooden-chair/"
+					class="open-quick-view quick-view-button"
+					data-id="270">Quick view</a>
+			</div>
+							<div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="270" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+			</div>
+
+	<div class="wd-add-btn wd-add-btn-replace">
+		
+		<a href="?add-to-cart=270" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart add-to-cart-loop" data-product_id="270" data-product_sku="" aria-label="Añade &ldquo;Classic wooden chair&rdquo; a tu carrito" rel="nofollow"><span>Añadir al carrito</span></a>	</div>
+				<div class="quick-shop-wrapper wd-fill wd-scroll">
+				<div class="quick-shop-close wd-action-btn wd-style-text wd-cross-icon"><a href="#" rel="nofollow noopener">Close</a></div>
+				<div class="quick-shop-form wd-scroll-content">
+				</div>
+			</div>
+		</div>
+<h3 class="wd-entities-title"><a href="http://localhost/producto/classic-wooden-chair/">Classic wooden chair</a></h3>
+		<div class="wd-product-cats">
+			<a href="http://localhost/categoria-producto/furniture/" rel="tag">Furniture</a>		</div>
+		
+
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;299</bdi></span></span>
+
+
+
+</div>					
+		</div>
+				<div class="slide-product owl-carousel-item">
+			
+											<div class="product-grid-item product wd-hover-quick type-product post-381 status-publish first instock product_cat-furniture has-post-thumbnail taxable shipping-taxable purchasable product-type-variable" data-loop="4" data-id="381">
+
+	
+<div class="product-element-top">
+	<a href="http://localhost/producto/eames-plastic-side-chair/" class="product-image-link">
+		<div class="product-labels labels-rounded"><span class="new product-label">New</span></div><img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/10/accessories-product-9.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/10/accessories-product-9.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>	</a>
+				<div class="hover-img">
+				<a href="http://localhost/producto/eames-plastic-side-chair/">
+					<img width="430" height="491" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20430%20491'%3E%3C/svg%3E" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" data-lazy-src="http://localhost/wp-content/uploads/2021/08/eames-plastic-side-chair-2.jpg" /><noscript><img width="430" height="491" src="http://localhost/wp-content/uploads/2021/08/eames-plastic-side-chair-2.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" /></noscript>				</a>
+			</div>
+				<div class="wd-buttons wd-pos-r-t">
+							<div class="wd-compare-btn product-compare-button wd-action-btn wd-style-icon wd-compare-icon">
+				<a href="http://localhost/compare/" data-id="381" data-added-text="Compare products">
+					Compare				</a>
+			</div>
+							<div class="quick-view wd-action-btn wd-style-icon wd-quick-view-icon">
+				<a
+					href="http://localhost/producto/eames-plastic-side-chair/"
+					class="open-quick-view quick-view-button"
+					data-id="381">Quick view</a>
+			</div>
+							<div class="wd-wishlist-btn wd-action-btn wd-style-icon wd-wishlist-icon">
+				<a class="" href="http://localhost/wishlist/" data-key="78fe87753c" data-product-id="381" data-added-text="Browse Wishlist">Add to wishlist</a>
+			</div>
+			</div>
+
+	<div class="wd-add-btn wd-add-btn-replace">
+		
+		<a href="http://localhost/producto/eames-plastic-side-chair/" data-quantity="1" class="button product_type_variable add_to_cart_button add-to-cart-loop" data-product_id="381" data-product_sku="" aria-label="Elige las opciones para &ldquo;Eames plastic side chair&rdquo;" rel="nofollow"><span>Seleccionar opciones</span></a>	</div>
+				<div class="quick-shop-wrapper wd-fill wd-scroll">
+				<div class="quick-shop-close wd-action-btn wd-style-text wd-cross-icon"><a href="#" rel="nofollow noopener">Close</a></div>
+				<div class="quick-shop-form wd-scroll-content">
+				</div>
+			</div>
+		</div>
+<h3 class="wd-entities-title"><a href="http://localhost/producto/eames-plastic-side-chair/">Eames plastic side chair</a></h3>
+		<div class="wd-product-cats">
+			<a href="http://localhost/categoria-producto/furniture/" rel="tag">Furniture</a>		</div>
+		
+
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>&nbsp;99</bdi></span></span>
+
+
+
+</div>					
+		</div>
+						
+				</div> <!-- end product-items -->
+			</div> <!-- end #carousel-858 -->
+			
+					
+	</div>
+
+</div>
+
+</div><!-- #product-232 -->
+
+
+
+
+	
+	</div>
+			</div><!-- .main-page-wrapper --> 
+			</div> <!-- end row -->
+	</div> <!-- end container -->
+
+						 					<div class="wd-prefooter">
+			<div class="container">
+																</div>
+		</div>
+	
+			<footer class="footer-container color-scheme-light">
+																<div class="container main-footer">
+									<link rel="stylesheet" id="elementor-post-7214-css" href="http://localhost/wp-content/cache/autoptimize/css/autoptimize_single_dad145dd71f9341968970ed37a6ed017.css?ver=1641687017" type="text/css" media="all">
+					<div data-elementor-type="wp-post" data-elementor-id="7214" class="elementor elementor-7214" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-2309d12 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled" data-id="2309d12" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-d549037" data-id="d549037" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-e3cb6c0 elementor-widget elementor-widget-wd_image_or_svg" data-id="e3cb6c0" data-element_type="widget" data-widget_type="wd_image_or_svg.default">
+				<div class="elementor-widget-container">
+			
+		<div class="wd-image text-center">
+								<img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20220%2032'%3E%3C/svg%3E" title="wood-logo-white-reserve" width="220" height="32" data-lazy-src="http://localhost/wp-content/uploads/2021/08/wood-logo-white-reserve.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/wood-logo-white-reserve.svg" title="wood-logo-white-reserve" width="220" height="32"></noscript>					</div>
+
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-271dd7a" data-id="271dd7a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-6175221 elementor-widget elementor-widget-wd_mega_menu" data-id="6175221" data-element_type="widget" data-widget_type="wd_mega_menu.default">
+				<div class="elementor-widget-container">
+						 					<div class="widget_nav_mega_menu text-center">
+						<ul id="menu-footer-menu-accessories" class="menu wd-nav wd-nav-horizontal wd-style-default wd-gap-s"><li id="menu-item-8491" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8491 item-level-0 menu-simple-dropdown wd-event-hover"><a href="#" class="woodmart-nav-link"><span class="nav-link-text">About Us</span></a></li>
+<li id="menu-item-8492" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8492 item-level-0 menu-simple-dropdown wd-event-hover"><a href="#" class="woodmart-nav-link"><span class="nav-link-text">Privacy Policy</span></a></li>
+<li id="menu-item-8493" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8493 item-level-0 menu-simple-dropdown wd-event-hover"><a href="#" class="woodmart-nav-link"><span class="nav-link-text">Shipping</span></a></li>
+<li id="menu-item-8494" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8494 item-level-0 menu-simple-dropdown wd-event-hover"><a href="#" class="woodmart-nav-link"><span class="nav-link-text">Order Tracking</span></a></li>
+<li id="menu-item-8495" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8495 item-level-0 menu-simple-dropdown wd-event-hover"><a href="#" class="woodmart-nav-link"><span class="nav-link-text">FAQs</span></a></li>
+</ul>		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-cffe1c7" data-id="cffe1c7" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-6187bb1 elementor-widget elementor-widget-wd_text_block" data-id="6187bb1" data-element_type="widget" data-widget_type="wd_text_block.default">
+				<div class="elementor-widget-container">
+					<div class="wd-text-block reset-last-child text-center">
+			
+			<a href="https://xtemos.com/">Xtemos Studio</a> Copyright © 2021
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+							</div>
+												</footer>
+	</div> <!-- end wrapper -->
+<div class="wd-close-side"></div>
+			 					<a href="#" class="scrollToTop" aria-label="Scroll to top button"></a>
+		<div class="mobile-nav wd-side-hidden wd-left">			<div class="wd-search-form">
+								<form role="search" method="get" class="searchform " action="http://localhost/" >
+					<input type="text" class="s" placeholder="Search for posts" value="" name="s" aria-label="Search" title="Search for posts" />
+					<input type="hidden" name="post_type" value="post">
+										<button type="submit" class="searchsubmit">
+						<span>
+							Search						</span>
+											</button>
+				</form>
+											</div>
+						<ul class="wd-nav wd-nav-mob-tab wd-style-underline">
+					<li class="mobile-tab-title mobile-pages-title  wd-active" data-menu="pages"><a href="#" rel="nofollow noopener"><span class="nav-link-text">Menu</span></a></li>
+					<li class="mobile-tab-title mobile-categories-title " data-menu="categories"><a href="#" rel="nofollow noopener"><span class="nav-link-text">Categories</span></a></li>
+				</ul>
+			<ul id="menu-categories" class="mobile-categories-menu wd-nav wd-nav-mobile"><li id="menu-item-5653" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat current-product-ancestor current-menu-parent current-product-parent menu-item-5653 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/furniture/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="chair" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/chair.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/chair.svg" title="chair" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Furniture</span></a></li>
+<li id="menu-item-8381" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8381 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/cooking/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="knives" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/knives.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/knives.svg" title="knives" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Cooking</span></a></li>
+<li id="menu-item-8379" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8379 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/accessories/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="flower" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/flower.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/flower.svg" title="flower" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Accessories</span></a></li>
+<li id="menu-item-8383" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8383 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/toys/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="rocking-horse" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/rocking-horse.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/rocking-horse.svg" title="rocking-horse" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Fashion</span></a></li>
+<li id="menu-item-8416" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8416 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/clocks/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="clock" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/clock.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/clock.svg" title="clock" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Fashion</span></a></li>
+<li id="menu-item-8380" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8380 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/clocks/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="clock" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/clock.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/clock.svg" title="clock" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Clocks</span></a></li>
+<li id="menu-item-8382" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8382 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/lighting/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="light-bulb" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/light-bulb.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/light-bulb.svg" title="light-bulb" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Lighting</span></a></li>
+<li id="menu-item-8384" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8384 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/toys/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="rocking-horse" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/rocking-horse.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/rocking-horse.svg" title="rocking-horse" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Toys</span></a></li>
+<li id="menu-item-8418" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8418 item-level-0 menu-item-has-block menu-item-has-children dropdown-with-height"><a href="http://localhost/categoria-producto/clocks/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="clock" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/clock.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/clock.svg" title="clock" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Clocks</span></a></li>
+<li id="menu-item-8385" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat current-product-ancestor current-menu-parent current-product-parent menu-item-8385 item-level-0"><a href="http://localhost/categoria-producto/furniture/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="chair" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/chair.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/chair.svg" title="chair" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Hand Made</span></a></li>
+<li id="menu-item-8386" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8386 item-level-0"><a href="http://localhost/categoria-producto/lighting/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="light-bulb" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/light-bulb.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/light-bulb.svg" title="light-bulb" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Minimalism</span></a></li>
+<li id="menu-item-8387" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8387 item-level-0"><a href="http://localhost/categoria-producto/clocks/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="clock" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/clock.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/clock.svg" title="clock" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Electronics</span></a></li>
+<li id="menu-item-8388" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-8388 item-level-0"><a href="http://localhost/categoria-producto/cooking/" class="woodmart-nav-link"><img  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2018%2018'%3E%3C/svg%3E" title="knives" class="wd-nav-img" width="18" height="18" data-lazy-src="http://localhost/wp-content/uploads/2021/08/knives.svg"><noscript><img  src="http://localhost/wp-content/uploads/2021/08/knives.svg" title="knives" class="wd-nav-img" width="18" height="18"></noscript><span class="nav-link-text">Cars</span></a></li>
+</ul>			 			<ul id="menu-mobile-navigation" class="mobile-pages-menu wd-nav wd-nav-mobile wd-active"><li id="menu-item-8497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-8497 item-level-0 menu-item-has-block menu-item-has-children"><a href="http://localhost/" class="woodmart-nav-link"><span class="nav-link-text">Home</span></a></li>
+<li id="menu-item-8500" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8500 item-level-0 menu-item-has-block menu-item-has-children"><a href="http://localhost/shop/" class="woodmart-nav-link"><span class="nav-link-text">Shop</span></a></li>
+<li id="menu-item-8453" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8453 item-level-0"><a href="http://localhost/blog/" class="woodmart-nav-link"><span class="nav-link-text">Blog</span></a></li>
+<li id="menu-item-8401" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8401 item-level-0"><a href="http://localhost/blog/" class="woodmart-nav-link"><span class="nav-link-text">Blog</span></a></li>
+<li id="menu-item-8456" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8456 item-level-0"><a href="http://localhost/portfolio/" class="woodmart-nav-link"><span class="nav-link-text">Portfolio</span></a></li>
+<li id="menu-item-8402" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8402 item-level-0"><a href="http://localhost/portfolio/" class="woodmart-nav-link"><span class="nav-link-text">Portfolio</span></a></li>
+<li id="menu-item-8452" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8452 item-level-0"><a href="http://localhost/about-us-3/" class="woodmart-nav-link"><span class="nav-link-text">About us</span></a></li>
+<li id="menu-item-8483" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8483 item-level-0"><a href="http://localhost/about-us-3/" class="woodmart-nav-link"><span class="nav-link-text">About us</span></a></li>
+<li id="menu-item-8450" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8450 item-level-0"><a href="http://localhost/contact-us/" class="woodmart-nav-link"><span class="nav-link-text">Contact us</span></a></li>
+<li id="menu-item-8482" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8482 item-level-0"><a href="http://localhost/contact-us/" class="woodmart-nav-link"><span class="nav-link-text">Contact us</span></a></li>
+<li class="menu-item menu-item-wishlist wd-with-icon">			<a href="http://localhost/wishlist/" class="woodmart-nav-link">
+				<span class="nav-link-text">Wishlist</span>
+			</a>
+			</li><li class="menu-item menu-item-compare wd-with-icon"><a href="http://localhost/compare/">Compare</a></li><li class="menu-item  login-side-opener menu-item-account wd-with-icon"><a href="http://localhost/my-account/">Login / Register</a></li></ul>
+		</div><!--END MOBILE-NAV-->			<div class="cart-widget-side wd-side-hidden wd-right">
+				<div class="widget-heading">
+					<span class="title widget-title">Shopping cart</span>
+					<div class="close-side-widget wd-action-btn wd-style-text wd-cross-icon">
+						<a href="#" rel="nofollow">close</a>
+					</div>
+				</div>
+				<div class="widget woocommerce widget_shopping_cart"><div class="widget_shopping_cart_content"></div></div>			</div>
+					<div class="login-form-side wd-side-hidden wd-right">
+				<div class="widget-heading">
+					<h3 class="widget-title">Sign in</h3>
+					<div class="close-side-widget wd-action-btn wd-style-text wd-cross-icon">
+						<a href="#" rel="nofollow">close</a>
+					</div>
+				</div>
+
+				<div class="woocommerce-notices-wrapper"></div>
+							<form method="post" class="login woocommerce-form woocommerce-form-login
+			hidden-form			" action="http://localhost/producto/eames-lounge-chair/" style="display:none;">
+
+				
+				
+				<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide form-row-username">
+					<label for="username">Nombre de usuario o correo electrónico&nbsp;<span class="required">*</span></label>
+					<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="" />				</p>
+				<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide form-row-password">
+					<label for="password">Password&nbsp;<span class="required">*</span></label>
+					<input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" autocomplete="current-password" />
+				</p>
+
+				
+				<p class="form-row">
+					<input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="06e3266b57" /><input type="hidden" name="_wp_http_referer" value="/producto/eames-lounge-chair/" />											<input type="hidden" name="redirect" value="http://localhost/producto/eames-lounge-chair/" />
+										<button type="submit" class="button woocommerce-button woocommerce-form-login__submit" name="login" value="Log in">Log in</button>
+				</p>
+
+				<div class="login-form-footer">
+					<a href="http://localhost/my-account/lost-password/" class="woocommerce-LostPassword lost_password">Lost your password?</a>
+					<label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
+						<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" value="forever" title="Remember me" aria-label="Remember me" /> <span>Remember me</span>
+					</label>
+				</div>
+
+				
+				
+			</form>
+
+		
+				<div class="create-account-question">
+					<p>No account yet?</p>
+					<a href="http://localhost/my-account/?action=register" class="btn btn-style-link btn-color-primary create-account-button">Create an Account</a>
+				</div>
+			</div>
+		
+		<script type="rocketlazyloadscript">
+			window.RS_MODULES = window.RS_MODULES || {};
+			window.RS_MODULES.modules = window.RS_MODULES.modules || {};
+			window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
+			window.RS_MODULES.defered = true;
+			window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
+			window.RS_MODULES.type = 'compiled';
+		</script>
+		<script type="application/ld+json">{"@context":"https:\/\/schema.org\/","@graph":[{"@context":"https:\/\/schema.org\/","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"name":"Inicio","@id":"http:\/\/localhost"}},{"@type":"ListItem","position":2,"item":{"name":"Furniture","@id":"http:\/\/localhost\/categoria-producto\/furniture\/"}},{"@type":"ListItem","position":3,"item":{"name":"Eames lounge chair","@id":"http:\/\/localhost\/producto\/eames-lounge-chair\/"}}]},{"@context":"https:\/\/schema.org\/","@type":"Product","@id":"http:\/\/localhost\/producto\/eames-lounge-chair\/#product","name":"Eames lounge chair","url":"http:\/\/localhost\/producto\/eames-lounge-chair\/","description":"Scelerisque facilisi rhoncus non faucibus parturient senectus lobortis a ullamcorper vestibulum mi nibh ultricies a parturient gravida a vestibulum leo sem in. Est cum torquent mi in scelerisque leo aptent per at vitae ante eleifend mollis adipiscing.","image":"http:\/\/localhost\/wp-content\/uploads\/2021\/10\/accessories-product-2.jpg","sku":232,"offers":[{"@type":"Offer","price":"399","priceValidUntil":"2023-12-31","priceSpecification":{"price":"399","priceCurrency":"COP","valueAddedTaxIncluded":"true"},"priceCurrency":"COP","availability":"http:\/\/schema.org\/InStock","url":"http:\/\/localhost\/producto\/eames-lounge-chair\/","seller":{"@type":"Organization","name":"Atomwood","url":"http:\/\/localhost"}}],"brand":{"@type":"Brand","name":"KL\u00d6BER"}}]}</script>	<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script type="text/template" id="tmpl-variation-template">
+	<div class="woocommerce-variation-description">{{{ data.variation.variation_description }}}</div>
+	<div class="woocommerce-variation-price">{{{ data.variation.price_html }}}</div>
+	<div class="woocommerce-variation-availability">{{{ data.variation.availability_html }}}</div>
+</script>
+<script type="text/template" id="tmpl-unavailable-variation-template">
+	<p>Lo sentimos, este producto no está disponible. Por favor elige otra combinación.</p>
+</script>
+<link rel='stylesheet' id='google-fonts-2-css'  href='https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=5.8.3' type='text/css' media='all' />
+
+
+<script type='text/javascript' src='http://localhost/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.7' id='regenerator-runtime-js' defer></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"http:\/\/localhost\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+
+
+
+
+<script type='text/javascript' id='wc-add-to-cart-js-extra'>
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"Ver carrito","cart_url":"http:\/\/localhost\/cart\/","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+</script>
+
+
+<script type='text/javascript' id='wc-single-product-js-extra'>
+/* <![CDATA[ */
+var wc_single_product_params = {"i18n_required_rating_text":"Por favor elige una puntuaci\u00f3n","review_rating_required":"yes","flexslider":{"rtl":false,"animation":"slide","smoothHeight":true,"directionNav":false,"controlNav":"thumbnails","slideshow":false,"animationSpeed":500,"animationLoop":false,"allowOneSlide":false},"zoom_enabled":"","zoom_options":[],"photoswipe_enabled":"","photoswipe_options":{"shareEl":false,"closeOnScroll":false,"history":false,"hideAnimationDuration":0,"showAnimationDuration":0},"flexslider_enabled":""};
+/* ]]> */
+</script>
+
+
+<script type='text/javascript' id='woocommerce-js-extra'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+
+<script type='text/javascript' id='wc-cart-fragments-js-extra'>
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_561ab34a8bf046938aca27f063597272","fragment_name":"wc_fragments_561ab34a8bf046938aca27f063597272","request_timeout":"5000"};
+/* ]]> */
+</script>
+
+<script type='text/javascript' id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-extra'>
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/checkout\/|\/cart\/|\/my-account\/|\/wc-api\/v(.*)|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"http:\/\/localhost","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+
+
+
+
+<script type='text/javascript' id='elementor-pro-frontend-js-before'>
+var ElementorProFrontendConfig = {"ajaxurl":"http:\/\/localhost\/wp-admin\/admin-ajax.php","nonce":"fba07506d4","urls":{"assets":"http:\/\/localhost\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"http:\/\/localhost\/wp-json\/"},"i18n":{"toc_no_headings_found":"No headings were found on this page."},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"menu_cart":{"cart_page_url":"http:\/\/localhost\/cart\/","checkout_page_url":"http:\/\/localhost\/checkout\/"},"facebook_sdk":{"lang":"es_CO","app_id":""},"lottie":{"defaultAnimationUrl":"http:\/\/localhost\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+var ElementorProFrontendConfig = {"ajaxurl":"http:\/\/localhost\/wp-admin\/admin-ajax.php","nonce":"fba07506d4","urls":{"assets":"http:\/\/localhost\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"http:\/\/localhost\/wp-json\/"},"i18n":{"toc_no_headings_found":"No headings were found on this page."},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"menu_cart":{"cart_page_url":"http:\/\/localhost\/cart\/","checkout_page_url":"http:\/\/localhost\/checkout\/"},"facebook_sdk":{"lang":"es_CO","app_id":""},"lottie":{"defaultAnimationUrl":"http:\/\/localhost\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+</script>
+
+
+
+<script type='text/javascript' id='elementor-frontend-js-before'>
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartir en Facebook","shareOnTwitter":"Compartir en Twitter","pinIt":"Pinear","download":"Descargar","downloadImage":"Descargar imagen","fullscreen":"Pantalla completa","zoom":"Zoom","share":"Compartir","playVideo":"Reproducir v\u00eddeo","previous":"Anterior","next":"Siguiente","close":"Cerrar"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"M\u00f3vil","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"M\u00f3vil grande","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tableta","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tableta grande","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Port\u00e1til","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Pantalla grande","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.5.3","is_static":false,"experimentalFeatures":{"e_dom_optimization":true,"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"a11y_improvements":true,"e_import_export":true,"additional_custom_breakpoints":true,"e_hidden_wordpress_widgets":true,"theme_builder_v2":true,"landing-pages":true,"elements-color-picker":true,"favorite-widgets":true,"admin-top-bar":true,"form-submissions":true,"e_scroll_snap":true},"urls":{"assets":"http:\/\/localhost\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":232,"title":"Eames%20lounge%20chair%20%E2%80%93%20Atomwood","excerpt":"Scelerisque facilisi rhoncus non faucibus parturient senectus lobortis a ullamcorper vestibulum mi nibh ultricies a parturient gravida a vestibulum leo sem in. Est cum torquent mi in scelerisque leo aptent per at vitae ante eleifend mollis adipiscing.","featuredImage":"http:\/\/localhost\/wp-content\/uploads\/2021\/10\/accessories-product-2.jpg"}};
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartir en Facebook","shareOnTwitter":"Compartir en Twitter","pinIt":"Pinear","download":"Descargar","downloadImage":"Descargar imagen","fullscreen":"Pantalla completa","zoom":"Zoom","share":"Compartir","playVideo":"Reproducir v\u00eddeo","previous":"Anterior","next":"Siguiente","close":"Cerrar"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"M\u00f3vil","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"M\u00f3vil grande","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tableta","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tableta grande","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Port\u00e1til","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Pantalla grande","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.5.3","is_static":false,"experimentalFeatures":{"e_dom_optimization":true,"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"a11y_improvements":true,"e_import_export":true,"additional_custom_breakpoints":true,"e_hidden_wordpress_widgets":true,"theme_builder_v2":true,"landing-pages":true,"elements-color-picker":true,"favorite-widgets":true,"admin-top-bar":true,"form-submissions":true,"e_scroll_snap":true},"urls":{"assets":"http:\/\/localhost\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":232,"title":"Eames%20lounge%20chair%20%E2%80%93%20Atomwood","excerpt":"Scelerisque facilisi rhoncus non faucibus parturient senectus lobortis a ullamcorper vestibulum mi nibh ultricies a parturient gravida a vestibulum leo sem in. Est cum torquent mi in scelerisque leo aptent per at vitae ante eleifend mollis adipiscing.","featuredImage":"http:\/\/localhost\/wp-content\/uploads\/2021\/10\/accessories-product-2.jpg"}};
+</script>
+
+
+
+<script type='text/javascript' id='woodmart-theme-js-extra'>
+/* <![CDATA[ */
+var woodmart_settings = {"menu_storage_key":"woodmart_9506d2c8339be4bc2cef29dfab7d5721","ajax_dropdowns_save":"1","photoswipe_close_on_scroll":"1","woocommerce_ajax_add_to_cart":"yes","variation_gallery_storage_method":"new","elementor_no_gap":"enabled","adding_to_cart":"Processing","added_to_cart":"Product was successfully added to your cart.","continue_shopping":"Continue shopping","view_cart":"View Cart","go_to_checkout":"Checkout","loading":"Loading...","countdown_days":"days","countdown_hours":"hr","countdown_mins":"min","countdown_sec":"sc","cart_url":"http:\/\/localhost\/cart\/","ajaxurl":"http:\/\/localhost\/wp-admin\/admin-ajax.php","add_to_cart_action":"widget","added_popup":"no","categories_toggle":"yes","enable_popup":"no","popup_delay":"2000","popup_event":"time","popup_scroll":"1000","popup_pages":"0","promo_popup_hide_mobile":"yes","product_images_captions":"no","ajax_add_to_cart":"1","all_results":"View all results","product_gallery":{"images_slider":true,"thumbs_slider":{"enabled":true,"position":"left","items":{"desktop":4,"tablet_landscape":3,"tablet":4,"mobile":3,"vertical_items":3}}},"zoom_enable":"yes","ajax_scroll":"yes","ajax_scroll_class":".main-page-wrapper","ajax_scroll_offset":"100","infinit_scroll_offset":"300","product_slider_auto_height":"no","price_filter_action":"click","product_slider_autoplay":"","close":"Close (Esc)","share_fb":"Share on Facebook","pin_it":"Pin it","tweet":"Tweet","download_image":"Download image","cookies_version":"1","header_banner_version":"1","promo_version":"1","header_banner_close_btn":"yes","header_banner_enabled":"no","whb_header_clone":"\n    <div class=\"whb-sticky-header whb-clone whb-main-header <%wrapperClasses%>\">\n        <div class=\"<%cloneClass%>\">\n            <div class=\"container\">\n                <div class=\"whb-flex-row whb-general-header-inner\">\n                    <div class=\"whb-column whb-col-left whb-visible-lg\">\n                        <%.site-logo%>\n                    <\/div>\n                    <div class=\"whb-column whb-col-center whb-visible-lg\">\n                        <%.wd-header-main-nav%>\n                    <\/div>\n                    <div class=\"whb-column whb-col-right whb-visible-lg\">\n                        <%.wd-header-my-account%>\n                        <%.wd-header-search:not(.wd-header-search-mobile)%>\n\t\t\t\t\t\t<%.wd-header-wishlist%>\n                        <%.wd-header-compare%>\n                        <%.wd-header-cart%>\n                        <%.wd-header-fs-nav%>\n                    <\/div>\n                    <%.whb-mobile-left%>\n                    <%.whb-mobile-center%>\n                    <%.whb-mobile-right%>\n                <\/div>\n            <\/div>\n        <\/div>\n    <\/div>\n","pjax_timeout":"5000","split_nav_fix":"","shop_filters_close":"no","woo_installed":"1","base_hover_mobile_click":"no","centered_gallery_start":"1","quickview_in_popup_fix":"","one_page_menu_offset":"150","hover_width_small":"1","is_multisite":"","current_blog_id":"1","swatches_scroll_top_desktop":"no","swatches_scroll_top_mobile":"no","lazy_loading_offset":"0","add_to_cart_action_timeout":"no","add_to_cart_action_timeout_number":"3","single_product_variations_price":"no","google_map_style_text":"Custom style","quick_shop":"yes","sticky_product_details_offset":"150","preloader_delay":"300","comment_images_upload_size_text":"Some files are too large. Allowed file size is 1 MB.","comment_images_count_text":"You can upload up to 3 images to your review.","comment_images_upload_mimes_text":"You are allowed to upload images only in png, jpeg formats.","comment_images_added_count_text":"Added %s image(s)","comment_images_upload_size":"1048576","comment_images_count":"3","search_input_padding":"no","update_fragments_fix":"yes","comment_images_upload_mimes":{"jpg|jpeg|jpe":"image\/jpeg","png":"image\/png"},"home_url":"http:\/\/localhost\/","shop_url":"http:\/\/localhost\/tienda\/","age_verify":"no","age_verify_expires":"30","cart_redirect_after_add":"no","swatches_labels_name":"no","product_categories_placeholder":"Elige una categor\u00eda","product_categories_no_results":"No matches found","cart_hash_key":"wc_cart_hash_561ab34a8bf046938aca27f063597272","fragment_name":"wc_fragments_561ab34a8bf046938aca27f063597272","photoswipe_template":"<div class=\"pswp\" aria-hidden=\"true\" role=\"dialog\" tabindex=\"-1\"><div class=\"pswp__bg\"><\/div><div class=\"pswp__scroll-wrap\"><div class=\"pswp__container\"><div class=\"pswp__item\"><\/div><div class=\"pswp__item\"><\/div><div class=\"pswp__item\"><\/div><\/div><div class=\"pswp__ui pswp__ui--hidden\"><div class=\"pswp__top-bar\"><div class=\"pswp__counter\"><\/div><button class=\"pswp__button pswp__button--close\" title=\"Cerrar (Esc)\"><\/button> <button class=\"pswp__button pswp__button--share\" title=\"Compartir\"><\/button> <button class=\"pswp__button pswp__button--fs\" title=\"Cambiar a pantalla completa\"><\/button> <button class=\"pswp__button pswp__button--zoom\" title=\"Ampliar\/Reducir\"><\/button><div class=\"pswp__preloader\"><div class=\"pswp__preloader__icn\"><div class=\"pswp__preloader__cut\"><div class=\"pswp__preloader__donut\"><\/div><\/div><\/div><\/div><\/div><div class=\"pswp__share-modal pswp__share-modal--hidden pswp__single-tap\"><div class=\"pswp__share-tooltip\"><\/div><\/div><button class=\"pswp__button pswp__button--arrow--left\" title=\"Anterior (flecha izquierda)\"><\/button> <button class=\"pswp__button pswp__button--arrow--right\" title=\"Siguiente (flecha derecha)>\"><\/button><div class=\"pswp__caption\"><div class=\"pswp__caption__center\"><\/div><\/div><\/div><\/div><\/div>","load_more_button_page_url":"yes","menu_item_hover_to_click_on_responsive":"no","clear_menu_offsets_on_resize":"yes","three_sixty_framerate":"60","ajax_search_delay":"300","site_width":"1222","combined_css":"no","slider_distortion_effect":"sliderWithNoise","ajax_links":".wd-nav-product-cat a, .widget_product_categories a, .widget_layered_nav_filters a, .woocommerce-widget-layered-nav a, .filters-area:not(.custom-content) a, body.post-type-archive-product:not(.woocommerce-account) .woocommerce-pagination a, body.tax-product_cat:not(.woocommerce-account) .woocommerce-pagination a, .wd-shop-tools a:not(.breadcrumb-link), .woodmart-woocommerce-layered-nav a, .woodmart-price-filter a, .wd-clear-filters a, .woodmart-woocommerce-sort-by a, .woocommerce-widget-layered-nav-list a, .wd-widget-stock-status a, .widget_nav_mega_menu a"};
+var woodmart_page_css = [];
+/* ]]> */
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type='text/javascript' id='wp-util-js-extra'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+
+<script type='text/javascript' id='wc-add-to-cart-variation-js-extra'>
+/* <![CDATA[ */
+var wc_add_to_cart_variation_params = {"wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_no_matching_variations_text":"Lo sentimos, no hay productos que igualen tu selecci\u00f3n. Por favor escoge una combinaci\u00f3n diferente.","i18n_make_a_selection_text":"Elige las opciones del producto antes de a\u00f1adir este producto a tu carrito.","i18n_unavailable_text":"Lo sentimos, este producto no est\u00e1 disponible. Por favor elige otra combinaci\u00f3n."};
+/* ]]> */
+</script>
+
+
+
+
+
+
+
+
+
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script><script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script><script defer src="http://localhost/wp-content/cache/autoptimize/js/autoptimize_c55f7bd1e6ecf7633971e02c835dbafe.js"></script></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1641697582 -->
