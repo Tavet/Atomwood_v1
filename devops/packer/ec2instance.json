@@ -22,9 +22,9 @@
                 ],
                 "most_recent": true
             },
-            "instance_type": "t3.medium",
+            "instance_type": "t2.micro",
             "ssh_username": "{{user `ssh_username`}}",
-            "ami_name": "Atomwood web {{timestamp}}",
+            "ami_name": "Atomwood Store",
             "ami_description": "Atomwood Wordpress Deployment AMI v1.0.0 - No scaling"
         }
     ],

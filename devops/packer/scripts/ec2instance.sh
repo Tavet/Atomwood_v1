@@ -18,13 +18,17 @@ curl -L https://github.com/docker/compose/releases/latest/download/docker-compos
 chmod +x /usr/local/bin/docker-compose
 
 # Clone repository
+cd /home/ec2-user
 git clone https://Tavet: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@github.com/Tavet/AtomWood.git --branch=master Atomwood
 
 # Enable HTTPS 
-cd Atomwood/nginx
+cd /home/ec2-user/Atomwood/nginx
 rm -rf ./default.conf || true
 mv default_https.conf.template default.conf
 
 # Run
-cd ..
+cd /home/ec2-user/Atomwood
 docker-compose up -d
+
+# Renew Cerbot Certificate
+echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo renew -q" | sudo tee -a /etc/crontab > /dev/null
