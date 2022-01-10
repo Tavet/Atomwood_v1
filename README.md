@@ -17,6 +17,9 @@ Then run the script
 ```./init-letsencrypt.sh```
 
 ## Project initialization
+From the beginning
+```mkdir -p logs/nginx/ mysql/ wordpress/```
+
 Start
 ```docker-compose up -d```
 
