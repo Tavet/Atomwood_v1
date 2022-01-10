@@ -29,6 +29,3 @@ mv default_https.conf.template default.conf
 # Run
 cd /home/ec2-user/Atomwood
 docker-compose up -d
-
-# Renew Cerbot Certificate
-echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo renew -q" | sudo tee -a /etc/crontab > /dev/null

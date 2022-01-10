@@ -8,16 +8,15 @@ server {
         rewrite ^ https://$host$request_uri? permanent;
     }
 
-    location ^~ /.well-known {
-        allow all;
-        root  /data/letsencrypt/;
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
     }
 }
 
 server {
     listen      443           ssl http2;
     listen [::]:443           ssl http2;
-    server_name               atomwood.com.co www.atomwood.com.co;
+    server_name               atomwood.com.co;
 
     add_header                Strict-Transport-Security "max-age=31536000" always;
 
