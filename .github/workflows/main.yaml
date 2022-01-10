@@ -16,7 +16,7 @@ env:
   SSH_USERNAME: ec2-user
 
 jobs:
-  build:
+  ec2-store-ami:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Execute packer
         run: |
-          packer build -var-file=devops/packer/variables.json devops/packer/k8s_packer_master.json
+          packer build -var-file=devops/packer/variables.json devops/packer/ec2instance.json
 
   cloudformation-upload:
     runs-on: ubuntu-latest
