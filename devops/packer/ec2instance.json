@@ -1,9 +1,8 @@
 {
     "variables": {
-        "aws_access_key": "${aws_access_key}",
-        "aws_secret_key": "${aws_secret_key}",
-        "aws_region": "${aws_region}",
-        "ssh_username": "${ssh_username}"
+        "aws_access_key": "{{env `aws_access_key`}}",
+        "aws_secret_key": "{{env `aws_secret_key`}}",
+        "aws_region": "{{env `aws_region`}}"
     },
     "builders": [
         {
@@ -23,7 +22,7 @@
                 "most_recent": true
             },
             "instance_type": "t2.micro",
-            "ssh_username": "{{user `ssh_username`}}",
+            "ssh_username": "ec2-user",
             "ami_name": "Atomwood Store",
             "ami_description": "Atomwood Wordpress Deployment AMI v1.0.0 - No scaling"
         }
@@ -31,7 +30,7 @@
     "provisioners": [
         {
             "execute_command": "echo 'packer' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-            "script": "./devops/packer/scripts/ec2instance.sh",
+            "script": "./scripts/ec2instance.sh",
             "type": "shell"
         }
     ]
