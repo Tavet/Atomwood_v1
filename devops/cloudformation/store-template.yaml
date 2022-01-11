@@ -29,6 +29,7 @@ Resources:
             - AtomwoodStoreAmi
             - AtomwoodStoreSG
         Properties:
+            DisableApiTermination: true
             InstanceType: "t2.micro"
             KeyName: "AtomwoodKeyPair"
             ImageId: !Ref AtomwoodStoreAmi
