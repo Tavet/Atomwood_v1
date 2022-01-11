@@ -64,9 +64,6 @@ Resources:
                 - !Ref AtomwoodEIP
             TTL: 900
             Type: A
-            Tags:
-                - Key: "project"
-                  Value: "Atomwood"
 
     # Resources to find the latest AMI built with Packer
 
@@ -141,6 +138,3 @@ Resources:
             Owner: "107982701859"
             Name: "atomwood-store-linux-image"
             Architecture: "x86_64"
-            Tags:
-                - Key: "project"
-                  Value: "Atomwood"
