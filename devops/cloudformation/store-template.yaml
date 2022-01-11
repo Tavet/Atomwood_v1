@@ -22,6 +22,9 @@ Resources:
                 - Description: "Allow all outbound traffic"
                   IpProtocol: "-1"
                   CidrIp: 0.0.0.0/0
+            Tags:
+                - Key: "project"
+                  Value: "Atomwood"
 
     AtomwoodStoreEC2:
         Type: AWS::EC2::Instance
@@ -38,12 +41,18 @@ Resources:
                   DeviceIndex: "0"
                   GroupSet:
                       - !Ref AtomwoodStoreSG
+            Tags:
+                - Key: "project"
+                  Value: "Atomwood"
 
     AtomwoodEIP:
         Type: AWS::EC2::EIP
         DependsOn: AtomwoodStoreEC2
         Properties:
             InstanceId: !Ref AtomwoodStoreEC2
+            Tags:
+                - Key: "project"
+                  Value: "Atomwood"
 
     AtomwoodStoreR53Record:
         Type: AWS::Route53::RecordSet
@@ -51,10 +60,13 @@ Resources:
         Properties:
             HostedZoneId: Z03697981PRX9M5EJTO5Z
             Name: atomwood.com.co
-            ResourceRecords: 
+            ResourceRecords:
                 - !Ref AtomwoodEIP
             TTL: 900
             Type: A
+            Tags:
+                - Key: "project"
+                  Value: "Atomwood"
 
     # Resources to find the latest AMI built with Packer
 
@@ -78,6 +90,9 @@ Resources:
                           - Action: ec2:DescribeImages
                             Effect: Allow
                             Resource: "*"
+            Tags:
+                - Key: "project"
+                  Value: "Atomwood"
 
     GetLatestAMI:
         Type: AWS::Lambda::Function
@@ -114,6 +129,9 @@ Resources:
                       except:
                         traceback.print_last()
                         cfnresponse.send(event, context, cfnresponse.FAIL, {}, "ok")
+            Tags:
+                - Key: "project"
+                  Value: "Atomwood"
 
     AtomwoodStoreAmi:
         Type: Custom::FindAMI
@@ -123,3 +141,6 @@ Resources:
             Owner: "107982701859"
             Name: "atomwood-store-linux-image"
             Architecture: "x86_64"
+            Tags:
+                - Key: "project"
+                  Value: "Atomwood"
