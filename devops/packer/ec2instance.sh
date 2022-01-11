@@ -31,3 +31,17 @@ mv default_https.conf.template default.conf
 cd /home/ec2-user/Atomwood
 mkdir mysql
 docker-compose up -d
+
+# Update files permissions
+docker-compose down --volumes
+
+cd /home/ec2-user/Atomwood/wordpress
+
+echo "define('FS_CHMOD_DIR', (0755 & ~ umask()));" >> wp-config.php
+echo "define('FS_CHMOD_FILE', (0644 & ~ umask()));" >> wp-config.php
+echo "define( 'FS_METHOD', 'direct' );" >> wp-config.php
+
+chown -R www:www ./*
+
+cd /home/ec2-user/Atomwood
+docker-compose up -d
