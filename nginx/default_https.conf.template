@@ -1,5 +1,4 @@
 server {
-    user www;
     listen      80;
     listen [::]:80;
     server_name atomwood.com.co;
