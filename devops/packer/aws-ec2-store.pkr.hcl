@@ -28,10 +28,12 @@ variable "github_token" {
 }
 
 source "amazon-ebs" "atomwood-store" {
-  ami_name        = "atomwood-store-linux-image"
-  ami_description = "Atomwood Wordpress Deployment AMI v1.0.0 - No scaling"
-  instance_type   = "t2.micro"
-  region          = "us-east-1"
+  ami_name              = "atomwood-store-linux-image"
+  ami_description       = "Atomwood Wordpress Deployment AMI v1.0.0 - No scaling"
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  force_deregister      = "true"
+  force_delete_snapshot = "true"
   source_ami_filter {
     filters = {
       name                = "amzn2-ami-hvm-2*-x86_64-gp2"
@@ -54,6 +56,5 @@ build {
     execute_command  = "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
     environment_vars = ["GITHUB_TOKEN=${var.github_token}"]
     script           = "ec2instance.sh"
-    timeout          = "30s"
   }
 }

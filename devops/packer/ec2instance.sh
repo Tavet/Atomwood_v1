@@ -27,7 +27,7 @@ cd /home/ec2-user/Atomwood/nginx
 rm -rf ./default.conf || true
 mv default_https.conf.template default.conf
 
-# Run
+# Run containers
 cd /home/ec2-user/Atomwood
 mkdir mysql
 docker-compose up -d

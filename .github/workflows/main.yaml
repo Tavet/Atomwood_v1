@@ -34,7 +34,8 @@ jobs:
 
       - name: Execute packer
         run: |
-          packer build -var-file=devops/packer/variables.json devops/packer/ec2instance.json
+          cd devops/packer/
+          packer build .
 
   cloudformation-upload:
     runs-on: ubuntu-latest
@@ -51,4 +52,3 @@ jobs:
 
       - name: Upload cloudformation templates
         run: aws s3 sync ./devops/cloudformation s3://atomwood-cloudformation --size-only
-

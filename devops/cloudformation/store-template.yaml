@@ -1,40 +1,124 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Atomwood store template
-Metadata:
-
-Parameters:
-
-Mappings:
-
-Conditions:
 
 Resources:
     AtomwoodStoreSG:
         Type: AWS::EC2::SecurityGroup
         Properties:
             GroupDescription: Allow https connections to client host
-            VpcId:
-                Ref: myVPC
+            VpcId: vpc-8744e1fa # Default VPC us-east-1
             SecurityGroupIngress:
-                - IpProtocol: tcp
+                - Description: "Allow HTTPS traffic"
+                  IpProtocol: tcp
                   FromPort: 443
                   ToPort: 443
                   CidrIp: 0.0.0.0/0
+                - Description: "Allow HTTP traffic"
+                  IpProtocol: tcp
+                  FromPort: 80
+                  ToPort: 80
+                  CidrIp: 0.0.0.0/0
             SecurityGroupEgress:
-                - IpProtocol: tcp
-                  FromPort: 443
-                  ToPort: 443
+                - Description: "Allow all outbound traffic"
+                  IpProtocol: "-1"
                   CidrIp: 0.0.0.0/0
 
     AtomwoodStoreEC2:
         Type: AWS::EC2::Instance
+        DependsOn:
+            - AtomwoodStoreAmi
+            - AtomwoodStoreSG
         Properties:
+            InstanceType: "t2.micro"
             KeyName: "AtomwoodKeyPair"
+            ImageId: !Ref AtomwoodStoreAmi
+            NetworkInterfaces:
+                - AssociatePublicIpAddress: "true"
+                  DeviceIndex: "0"
+                  GroupSet:
+                      - !Ref AtomwoodStoreSG
 
     AtomwoodEIP:
+        Type: AWS::EC2::EIP
+        DependsOn: AtomwoodStoreEC2
+        Properties:
+            InstanceId: !Ref AtomwoodStoreEC2
 
-    AtomwoodR53Record:
+    AtomwoodStoreR53Record:
+        Type: AWS::Route53::RecordSet
+        DependsOn: AtomwoodEIP
+        Properties:
+            HostedZoneId: Z03697981PRX9M5EJTO5Z
+            Name: atomwood.com.co
+            ResourceRecords: 
+                - !Ref AtomwoodEIP
+            TTL: 900
+            Type: A
 
-    
+    # Resources to find the latest AMI built with Packer
 
-Outputs:
+    DescribeImagesRole:
+        Type: AWS::IAM::Role
+        Properties:
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    - Action: sts:AssumeRole
+                      Effect: Allow
+                      Principal:
+                          Service: lambda.amazonaws.com
+            ManagedPolicyArns:
+                - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+            Policies:
+                - PolicyName: DescribeImages
+                  PolicyDocument:
+                      Version: "2012-10-17"
+                      Statement:
+                          - Action: ec2:DescribeImages
+                            Effect: Allow
+                            Resource: "*"
+
+    GetLatestAMI:
+        Type: AWS::Lambda::Function
+        DependsOn: DescribeImagesRole
+        Properties:
+            Runtime: python3.6
+            Handler: index.handler
+            Role: !GetAtt DescribeImagesRole.Arn
+            Timeout: 60
+            Code:
+                ZipFile: !Sub |
+                    import boto3
+                    import cfnresponse
+                    import json
+                    import traceback
+
+                    def handler(event, context):
+                      try:
+                        response = boto3.client('ec2').describe_images(
+                            Owners=[event['ResourceProperties']['Owner']],
+                            Filters=[
+                              {'Name': 'name', 'Values': [event['ResourceProperties']['Name']]},
+                              {'Name': 'architecture', 'Values': [event['ResourceProperties']['Architecture']]},
+                              {'Name': 'root-device-type', 'Values': ['ebs']},
+                            ],
+                        )
+
+                        amis = sorted(response['Images'],
+                                      key=lambda x: x['CreationDate'],
+                                      reverse=True)
+                        id = amis[0]['ImageId']
+
+                        cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, id)
+                      except:
+                        traceback.print_last()
+                        cfnresponse.send(event, context, cfnresponse.FAIL, {}, "ok")
+
+    AtomwoodStoreAmi:
+        Type: Custom::FindAMI
+        DependsOn: GetLatestAMI
+        Properties:
+            ServiceToken: !Sub ${GetLatestAMI.Arn}
+            Owner: "107982701859"
+            Name: "atomwood-store-linux-image"
+            Architecture: "x86_64"
