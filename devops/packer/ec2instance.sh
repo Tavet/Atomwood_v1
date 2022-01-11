@@ -20,7 +20,7 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 # Clone repository
 cd /home/ec2-user
-git clone https://Tavet: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@github.com/Tavet/AtomWood.git --branch=master Atomwood
+git clone https://Tavet:$GITHUB_TOKEN@github.com/Tavet/AtomWood.git --branch=master Atomwood
 
 # Enable HTTPS 
 cd /home/ec2-user/Atomwood/nginx

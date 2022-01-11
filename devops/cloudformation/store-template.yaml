@@ -31,4 +31,10 @@ Resources:
         Properties:
             KeyName: "AtomwoodKeyPair"
 
+    AtomwoodEIP:
+
+    AtomwoodR53Record:
+
+    
+
 Outputs:
