@@ -37,10 +37,7 @@ docker-compose down --volumes
 
 cd /home/ec2-user/Atomwood/wordpress
 
-echo "define('FS_CHMOD_DIR', (0755 & ~ umask()));" >> wp-config.php
-echo "define('FS_CHMOD_FILE', (0644 & ~ umask()));" >> wp-config.php
 echo "define( 'FS_METHOD', 'direct' );" >> wp-config.php
 
 cd /home/ec2-user/Atomwood
-chmod 770 ./wordpress/
-docker-compose up -d
+chmod 777 ./wordpress/
